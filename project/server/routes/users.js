@@ -31,24 +31,24 @@ module.exports = ({ getUsers, getUsersPosts }) => {
       .catch((err) => res.json({ error: err.message }));
   });
 
-  router.post('/', (req, res) => {
+  // router.post('/', (req, res) => {
 
-    const {first_name, last_name, email, password} = req.body;
+  //   const {first_name, last_name, email, password} = req.body;
 
-    getUserByEmail(email)
-      .then(user => {
+  //   getUserByEmail(email)
+  //     .then(user => {
 
-        if (user) {
-          res.json({msg: 'Sorry, a user account with this email already exists'});
-        } else {
-          return addUser(first_name, last_name, email, password)
-        }
+  //       if (user) {
+  //         res.json({msg: 'Sorry, a user account with this email already exists'});
+  //       } else {
+  //         return addUser(first_name, last_name, email, password)
+  //       }
 
-      })
-      .then(newUser => res.json(newUser))
-      .catch(err => res.json({error: err.message}));
+  //     })
+  //     .then(newUser => res.json(newUser))
+  //     .catch(err => res.json({error: err.message}));
 
-  })
+   //})
 
   return router;
 };
