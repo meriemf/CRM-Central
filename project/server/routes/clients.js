@@ -51,7 +51,7 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
 
    router.put('/:id', (req, res) => {
 
-    console.log(req.body);
+    //console.log(req.body);
     const id = req.params.id; 
     deleteClients(id)
    // .then(users => res.json(users))

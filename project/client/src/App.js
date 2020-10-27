@@ -36,8 +36,8 @@ import  Navbar  from './components/Navbar';
 import Routes from './components/Routes';
 
 
-//import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import themeDefault from "./themeDefault";
+// import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+// import themeDefault from "./themeDefault";
 
 
 function App() {

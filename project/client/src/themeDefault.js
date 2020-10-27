@@ -15,7 +15,7 @@
 //     width: 230,
 //     color: grey900
 //   },
-//   Button: {
+//   Button: { 
 //     primaryColor: blue600,
 //   },
 
@@ -24,4 +24,4 @@
 
 
 
-//export default themeDefault;
+// export default themeDefault;
