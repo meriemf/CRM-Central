@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import AddClient from './AddClients';
+import AddClient from './AddClient';
 import ClientList from './ClientList';
 import EditClient from './EditClient';
 import ProjectList from './ProjectList';
