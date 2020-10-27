@@ -133,7 +133,7 @@ return (
       className="form-control"
       name="client_type"
       // placeholder="Enter Department"
-      defaultValue={client.client_type}
+      value={client.client_type}
       onChange={handleChange}
       required >
     <option value="Select" >Select....</option>
@@ -150,7 +150,7 @@ return (
       className="form-control"
       name="work_type"
       // placeholder="Select Work type"
-      defaultValue={client.work_type}
+      value={client.work_type}
        onChange={handleChange}
       required >
    <option value="Select" >Select....</option> 
@@ -205,7 +205,7 @@ return (
       className="form-control"
       name="initial_contact_made"
       // placeholder="Enter Department"
-      defaultValue={client.initial_contact_made}
+      value={client.initial_contact_made}
       onChange={handleChange}
       required >
     <option value="Select" >Select....</option>
