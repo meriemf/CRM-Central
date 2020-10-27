@@ -21,6 +21,7 @@ const getClients = async()=>{
  setClients(response.data);
 }
 const handleDelete =(id) => {
+  
   axios.delete(`/clients/${id}`)
   .then( res=> {
     console.log("res", res);

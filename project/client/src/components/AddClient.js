@@ -45,7 +45,10 @@ const AddClient = (props) => {
        console.log(error);
      });
     };
-    
+   const onCancel = () => {
+
+    props.history.push('/clients');
+   };
   return(
   <form onSubmit = {handleSubmit}>
     <div className ="form-group">
@@ -179,10 +182,6 @@ const AddClient = (props) => {
     <option value="Yes">Yes</option>
     <option value="No">No</option></select>
     </div>
-
-
-   
-
   <button
           
          type="submit"
@@ -190,7 +189,13 @@ const AddClient = (props) => {
           className="btn btn-primary"
           title="Submit">Submit
   </button>
-
+  <button
+          type="cancel"
+          variant="primary"
+          className="btn btn-primary"
+          title="Cancel"
+          onClick={()=>{ onCancel()}}> Cancel 
+  </button>
   </form>
   )
 }

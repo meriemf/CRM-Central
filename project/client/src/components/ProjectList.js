@@ -18,10 +18,30 @@ const ProjectList = () => {
     });
   }, []);
 
+  const getProjects = async()=>{
+    const response = await axios.get(`/projects`);
+    console.log("console log of getProjects", response); 
+    setProjects(response.data);
+   }
+  const handleDelete =(id) => {
+  
+    axios.delete(`/projects/${id}`)
+    .then( res=> {
+      console.log("res", res);
+      if(res.status !== 200) {
+        alert("Not able to delete project");
+      }
+      else {
+        alert("Project deleted");
+        getProjects();
+      }
+    })
+  }
   const projects_list = projects.map((project) =>
 
     <ProjectItem
     key = {project.id}
+    id = {project.id}
     name = {project.name}
     number = {project.number}
     start_date = {project.start_date}
@@ -31,6 +51,7 @@ const ProjectList = () => {
     client_id = {project.client_id}
     payment_received = {project.payment_received}
     payment_date = {project.payment_date}
+    onDelete={handleDelete}
     />
   )
 
@@ -40,7 +61,7 @@ const ProjectList = () => {
 
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">id</th>
           <th scope="col">Project Name</th>
           <th scope="col">Number</th>
           <th scope="col">Start Date</th>
@@ -50,6 +71,7 @@ const ProjectList = () => {
           <th scope="col">Client</th>
           <th scope="col">Payment Recevied</th>
           <th scope="col">Payment Date</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       

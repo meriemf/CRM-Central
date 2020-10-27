@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
-import ProjectItem from './ProjectItem';
+//import ProjectItem from './ProjectItem';
+import ClientProjectItem from './ClientProjectItem'; 
 import axios from 'axios';
 
 const ClientItem = ({id, first_name, last_name, email, region, tweeter_username, onDelete}) => {
@@ -16,7 +17,7 @@ useEffect(() => {
  });
 }, []);
 console.log("projects", projects);
-const clientProjects = projects.map((project) => <ProjectItem
+const clientProjects = projects.map((project) => <ClientProjectItem
     key = {project.id}
     id = {project.id}
     name = {project.name}
@@ -46,7 +47,7 @@ return (
         <button
             className="btn btn-success mr-1"
             type="button"
-            onClick={()=>{ onDelete(id)}}> Delete
+            onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
         </button>
     </td>
 {isOpen && 

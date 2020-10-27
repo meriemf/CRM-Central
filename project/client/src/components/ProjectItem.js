@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 
 
-
-const ProjectItem = ({id, name, number, start_date, end_date, assigned_to, type, payment_received, payment_date, client_id}) => {
+const ProjectItem = ({id, name, number, start_date, end_date, assigned_to, type, payment_received, payment_date, client_id, onDelete}) => {
   return (
     <tr> 
         <th scope="row">{id}</th>
@@ -15,7 +15,20 @@ const ProjectItem = ({id, name, number, start_date, end_date, assigned_to, type,
         <td>{client_id}</td>
         <td>{payment_received}</td>
         <td>{payment_date}</td>
-        <th>Edit | Delete</th>
+        <td> 
+        <Link to= {`/projects/${id}/edit`}
+        
+            className="btn btn-success mr-1"
+            role="button"
+            aria-pressed="true" 
+            > Edit
+        </Link>
+        <button
+            className="btn btn-success mr-1"
+            type="button"
+            onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
+        </button>
+    </td>
     </tr>
   );
 
