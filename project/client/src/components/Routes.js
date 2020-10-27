@@ -1,11 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import AddClient from './AddClient';
+import AddClient from './AddClients';
 import ClientList from './ClientList';
 import EditClient from './EditClient';
 import ProjectList from './ProjectList';
 import AddProject from './AddProject';
-
 
 const Routes = () => {
 return (

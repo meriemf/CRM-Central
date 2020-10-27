@@ -15,7 +15,7 @@ const themeDefault = createMuiTheme({
     width: 230,
     color: grey900
   },
-  Button: {
+  Button: { 
     primaryColor: blue600,
   },
 
