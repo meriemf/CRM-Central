@@ -6,11 +6,19 @@ import axios from 'axios';
 const EditClient = (props) => {
 
 const { id } = props.match.params;
+
 const [client, setClient] = useState ({
  
- first_name: '',
- last_name: '',
- email: ''  
+  first_name:'',
+  last_name:'',
+  email:'',
+  department:'',
+  client_type:'',
+  work_type:'',
+  region:'',
+  position_title:'',
+  tweeter_username:'',
+  initial_contact_made:'',
 
 });
 
@@ -23,8 +31,9 @@ useEffect (() => {
      //  console.log(res.data.name);
     //if (res.data.name) {
     if (res.data.id) {
-   //   console.log(res.data);
+    
       setClient(res.data);
+      console.log(res.data);
     
     } else {
       alert('client not found');
@@ -117,41 +126,64 @@ return (
       required />
     </div>
 
-    {/* <div className ="form-group">
-      <label htmlFor="clientType">Client Type</label>
+    <div className ="form-group">
+      <label htmlFor="client_type">Client Type</label>
       <select 
       type="text"
       className="form-control"
-      name="clientType"
+      name="client_type"
       // placeholder="Enter Department"
-      defaultValue={client.clientType}
+      defaultValue={client.client_type}
       onChange={handleChange}
       required >
-   <option value="Select" selected>Select....</option>
-  <option value="Select">Select....</option>
-  <option value="Potential Client">Potential Client</option>
-  <option value="Current Client">Current Client</option></select>
-    </div> */}
-{/* 
+    <option value="Select" >Select....</option>
+    <option value="Potential Client">Potential Client</option>
+    <option value="Current Client">Current Client</option>
+    
+    </select>
+    </div>
+
     <div className ="form-group">
-      <label htmlFor="workType">Work Type</label>
+      <label htmlFor="work_type">Work Type</label>
       <select 
       type="text"
       className="form-control"
-      name="workType"
+      name="work_type"
       // placeholder="Select Work type"
-      
-       defaultValue={client.clientType}
+      defaultValue={client.work_type}
        onChange={handleChange}
       required >
-   <option value="Select" selected>Select....</option> 
-   <option value="Select">Select....</option>
-
- <option value="Educational Institution" selected>Educational Institution</option>
+   <option value="Select" >Select....</option> 
   <option value="Educational Institution">Educational Institution</option> 
   <option value="Business">Business</option></select>
-    </div> */}
+    </div>
 
+
+
+
+    <div className ="form-group">
+      <label htmlFor="region">Region</label>
+      <input 
+      type="text"
+      className="form-control"
+      name="region"
+      placeholder="Enter Region"
+      defaultValue={client.region}
+      onChange={handleChange}
+      required />
+    </div>
+
+    <div className ="form-group">
+      <label htmlFor="positionTitle">Position Title</label>
+      <input 
+      type="text"
+      className="form-control"
+      name="position_title"
+      placeholder="Enter Position Title"
+      defaultValue={client.position_title}
+      onChange={handleChange}
+      required />
+    </div>
 
     <div className ="form-group">
       <label htmlFor="tweeterUserName">Tweeter handle</label>
@@ -167,17 +199,19 @@ return (
 
 
     <div className ="form-group">
-      <label htmlFor="positionTitle">Position Title</label>
-      <input 
+      <label htmlFor="initial_contact_made">Initial Contact Done</label>
+      <select 
       type="text"
       className="form-control"
-      name="position_title"
-      placeholder="Enter Position Title"
-      defaultValue={client.position_title}
+      name="initial_contact_made"
+      // placeholder="Enter Department"
+      defaultValue={client.initial_contact_made}
       onChange={handleChange}
-      required />
+      required >
+    <option value="Select" >Select....</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option></select>
     </div>
-
   <button
           type="submit"
           variant="primary"

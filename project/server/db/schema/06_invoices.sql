@@ -5,5 +5,5 @@ CREATE TABLE invoices (
   number SERIAL,
   subtotal FLOAT,
   invoice_link TEXT,
-  project_id INTEGER REFERENCES projects(id)
+  project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE
 );

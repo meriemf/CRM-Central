@@ -4,5 +4,5 @@ CREATE TABLE client_notes (
   id SERIAL PRIMARY KEY NOT NULL,
   notes TEXT,
   date DATE,
-  client_id INTEGER REFERENCES clients(id)
+  client_id INTEGER REFERENCES clients(id) ON DELETE CASCADE
 );

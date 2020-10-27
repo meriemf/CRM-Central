@@ -4,5 +4,5 @@ CREATE TABLE sub_projects (
   id SERIAL PRIMARY KEY NOT NULL,
   date DATE,
   comment TEXT,
-  project_id INTEGER REFERENCES projects(id)
+  project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE
 );

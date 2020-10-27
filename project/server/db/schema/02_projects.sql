@@ -10,5 +10,5 @@ CREATE TABLE projects (
   type VARCHAR(255),
   payment_received BOOLEAN,
   payment_date DATE,
-  client_id INTEGER REFERENCES clients(id)
+  client_id INTEGER REFERENCES clients(id) ON DELETE CASCADE
 );
