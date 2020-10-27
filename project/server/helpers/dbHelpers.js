@@ -3,7 +3,7 @@ module.exports = (db) => {
   const getUsers = () => {
     const query = {
       // text: 'SELECT * FROM users',
-      text: 'SELECT * FROM clients',
+      text: `SELECT * FROM clients where client_status = 'A'`,
     };
 
     return db
@@ -29,7 +29,7 @@ module.exports = (db) => {
 
   const getSingleUser = (id) => {
     const query = {
-      text: 'SELECT * FROM clients WHERE id= $1',
+      text: `SELECT * FROM clients WHERE id= $1 and client_status='A'`,
       values: [id],
     };
     return db 
@@ -63,7 +63,8 @@ module.exports = (db) => {
 
   const deleteClients = (id) => {
     const query = {
-        text: 'DELETE FROM clients WHERE id= $1::integer',
+//        text: 'DELETE CASCADE FROM clients WHERE id= $1',
+        text: `UPDATE clients SET client_status = 'T' WHERE id=$1`,
         values: [id],
     };
     return db
