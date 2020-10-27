@@ -1,67 +1,75 @@
-import React , { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
-const AddClient = (props) => {
-  
-  // const [client,setClient] = useState({
-  //   name:'',
-  //   lastName:'',
-  //   email:'',
-  //   department:'',
-  //   region:'',
-  //   clientType:'',
-  //   workType:'',
-  //   tweeterUsername:'',
-  //   positionTitle:'',
-  //   initialContactMade:'',
-  // },
+const EditClient = (props) => {
+
+const { id } = props.match.params;
+const [client, setClient] = useState ({
+ 
+ first_name: '',
+ last_name: '',
+ email: ''  
+
+});
+
+useEffect (() => {
+  const getClient = () => {  
+   axios.get(`/clients/${id}/edit`)
+   //axios.get(`/clients/${id}`)
+   .then (
+     res=> {
+     //  console.log(res.data.name);
+    //if (res.data.name) {
+    if (res.data.id) {
+   //   console.log(res.data);
+      setClient(res.data);
     
-  const [client,setClient] = useState({
-    first_name:'',
-    last_name:'',
-     email:'',
-   //  department:'',
-    
-   // region:'',
-    // clientType:'',
-    // workType:'',
-     tweeter_username:'',
-     position_title:'',
-    // initialContactMade:'',
-  },
+    } else {
+      alert('client not found');
+    }
+   });
+ };
+    getClient();
+}, [id]);
+
+const handleChange = (event) => {
+  console.log("handle change function");
+  setClient ({
+  ...client, // save the previous state
+  [event.target.name] : event.target.value 
+  });
+
+ };
+ const SaveClient= () => {
+  axios.put(`/clients/${id}/edit`, client)
+   .then (res => {
+    console.log("save client",res);
+    //if (res.data.name) {
+     // if (res.data.id) {
+     console.log("props",props);
+     // props.history.push('/clients');
+     props.history.push('/clients');
+   //}
+  } 
   
   );
-
-  const handleChange = (e) => {
-   setClient ({
-   ...client, // save the previous state
-   [e.target.name] : e.target.value 
-   });
-
   };
+ const handleSubmit = (event)=> {
+   event.preventDefault();
+   
+   console.log(client);
+    SaveClient();
+ };
 
-  const handleSubmit = (event)=> {
-    event.preventDefault();
-    //Save the Client
-    console.log(client);
-     SaveClient();
-  }
-  // const SaveClient=()=>{ axios.post(`/api/users`,client)
-  const SaveClient=()=>{ axios.post(`/clients`,client)
-    .then(
-      (res)=>{
-     //console.log(res);
-     //alert(res.data.message);
-     props.history.push('/clients');
-     }, 
-     (error) => {
-       console.log(error);
-     });
-    };
-    
-  return(
-  <form onSubmit = {handleSubmit}>
+const onCancel = () => {
+
+  props.history.push('/clients');
+};
+return (
+
+<form onSubmit = {handleSubmit}>
     <div className ="form-group">
       <label htmlFor="name">First Name</label>
       <input 
@@ -171,15 +179,24 @@ const AddClient = (props) => {
     </div>
 
   <button
-          
-         type="submit"
+          type="submit"
           variant="primary"
           className="btn btn-primary"
-          title="Submit">Submit
+          title="Submit"> Submit
   </button>
-
+  
+  <button
+          type="cancel"
+          variant="primary"
+          className="btn btn-primary"
+          title="Cancel"
+          onClick={()=>{ onCancel()}}> Cancel 
+  </button>
   </form>
-  )
+
+);
+
 }
 
-export default AddClient;
+
+export default withRouter(EditClient);
