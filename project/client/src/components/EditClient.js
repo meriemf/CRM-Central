@@ -146,7 +146,7 @@ return (
       name="work_type"
       value={client.work_type}
       onChange={handleChange}
-      required >
+    required >
    <option value="select" >Select....</option> 
    <option value="Educational Institution">Educational Institution</option> 
    <option value="Business">Business</option></select>
