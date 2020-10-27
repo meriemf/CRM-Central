@@ -36,7 +36,7 @@ import  Navbar  from './components/Navbar';
 import Routes from './components/Routes';
 
 
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+//import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import themeDefault from "./themeDefault";
 
 
@@ -44,12 +44,12 @@ function App() {
   return (
 
   <Router>
-    <MuiThemeProvider theme={themeDefault}>
+    {/* <MuiThemeProvider theme={themeDefault}> */}
       <div className="container-fluid">       
        <Navbar />
        <Routes />
       </div>
-    </MuiThemeProvider>
+    {/* </MuiThemeProvider> */}
   </Router>
 
     
