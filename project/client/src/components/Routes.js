@@ -6,7 +6,6 @@ import EditClient from './EditClient';
 import ProjectList from './ProjectList';
 import AddProject from './AddProject';
 
-
 const Routes = () => {
 return (
   <Switch >
