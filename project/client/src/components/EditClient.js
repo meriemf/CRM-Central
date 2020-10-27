@@ -24,7 +24,7 @@ const [client, setClient] = useState ({
 
 useEffect (() => {
   const getClient = () => {  
-   axios.get(`/clients/${id}/edit`)
+  axios.get(`/clients/${id}/edit`)
    //axios.get(`/clients/${id}`)
    .then (
      res=> {
@@ -55,13 +55,9 @@ const handleChange = (event) => {
   axios.put(`/clients/${id}/edit`, client)
    .then (res => {
     console.log("save client",res);
-    //if (res.data.name) {
-     // if (res.data.id) {
      console.log("props",props);
-     // props.history.push('/clients');
      props.history.push('/clients');
-   //}
-  } 
+ } 
   
   );
   };
@@ -86,7 +82,7 @@ return (
       className="form-control"
       name="first_name"
       placeholder="Enter first name"
-      defaultValue={client.first_name}
+      value={client.first_name}
       onChange={handleChange}
       required />
     </div>
@@ -98,7 +94,7 @@ return (
       className="form-control"
       name="last_name"
       placeholder="Enter last name"
-      defaultValue={client.last_name}
+      value={client.last_name}
       onChange={handleChange}
       required />
     </div>
@@ -109,7 +105,7 @@ return (
       className="form-control"
       name="email"
       placeholder="Enter Email"
-      defaultValue={client.email}
+      value={client.email}
       onChange={handleChange}
       required />
     </div>
@@ -121,7 +117,7 @@ return (
       className="form-control"
       name="department"
       placeholder="Enter Department"
-      defaultValue={client.department}
+      value={client.department}
       onChange={handleChange}
       required />
     </div>
@@ -132,8 +128,7 @@ return (
       type="text"
       className="form-control"
       name="client_type"
-      // placeholder="Enter Department"
-      defaultValue={client.client_type}
+      value={client.client_type}
       onChange={handleChange}
       required >
     <option value="Select" >Select....</option>
@@ -149,13 +144,12 @@ return (
       type="text"
       className="form-control"
       name="work_type"
-      // placeholder="Select Work type"
-      defaultValue={client.work_type}
-       onChange={handleChange}
+      value={client.work_type}
+      onChange={handleChange}
       required >
-   <option value="Select" >Select....</option> 
-  <option value="Educational Institution">Educational Institution</option> 
-  <option value="Business">Business</option></select>
+   <option value="select" >Select....</option> 
+   <option value="Educational Institution">Educational Institution</option> 
+   <option value="Business">Business</option></select>
     </div>
 
 
@@ -168,7 +162,7 @@ return (
       className="form-control"
       name="region"
       placeholder="Enter Region"
-      defaultValue={client.region}
+      value={client.region}
       onChange={handleChange}
       required />
     </div>
@@ -180,7 +174,7 @@ return (
       className="form-control"
       name="position_title"
       placeholder="Enter Position Title"
-      defaultValue={client.position_title}
+      value={client.position_title}
       onChange={handleChange}
       required />
     </div>
@@ -192,7 +186,7 @@ return (
       className="form-control"
       name="tweeter_username"
       placeholder="Enter Tweeter handle"
-      defaultValue={client.tweeter_username}
+      value={client.tweeter_username}
       onChange={handleChange}
       required />
     </div>
@@ -204,11 +198,10 @@ return (
       type="text"
       className="form-control"
       name="initial_contact_made"
-      // placeholder="Enter Department"
-      defaultValue={client.initial_contact_made}
+      value={client.initial_contact_made}
       onChange={handleChange}
       required >
-    <option value="Select" >Select....</option>
+    <option value="select" >Select....</option>
     <option value="Yes">Yes</option>
     <option value="No">No</option></select>
     </div>

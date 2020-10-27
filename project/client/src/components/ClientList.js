@@ -21,16 +21,15 @@ const getClients = async()=>{
  setClients(response.data);
 }
 const handleDelete =(id) => {
-  axios.put(`/clients/${id}`)
+  axios.delete(`/clients/${id}`)
   .then( res=> {
     console.log("res", res);
     if(res.status !== 200) {
       alert("Not able to delete client");
     }
     else {
-      getClients();
       alert("client deleted");
-      
+      getClients();
     }
   })
 }
@@ -41,13 +40,8 @@ const clients_list = clients.map((client) => <ClientItem
   first_name = {client.first_name}
   last_name = {client.last_name}
   email = {client.email}
-  department = {client.department}
-  client_type ={client.client_type}
-  work_type ={client.work_type}
   region = {client.region}
-  position_title = {client.position_title}
   tweeter_username = {client.tweeter_username}
-  initial_contact_made ={client.initial_contact_made}
   onDelete={handleDelete}
   />
  )
@@ -61,13 +55,8 @@ return (
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Department</th>
-      <th scope="col">Client Type</th>
-      <th scope="col">Work Category</th>
       <th scope="col">Region</th>
-      <th scope="col">Position Title</th>
       <th scope="col">Tweeter_Username</th>
-      <th scope="col">Initial Contact Done</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>

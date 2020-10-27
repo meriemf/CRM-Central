@@ -10,6 +10,6 @@ CREATE TABLE clients(
   region VARCHAR(255),
   tweeter_username VARCHAR(255),
   position_title VARCHAR(255),
-  initial_contact_made VARCHAR(255),
+  initial_contact_made TEXT,
   client_status TEXT DEFAULT 'A'
 );
