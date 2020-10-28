@@ -130,6 +130,7 @@ const clients_list = clients.map((client) => <ClientItem
 return (
   <table className="table table-striped">
   <thead>
+    <div>
     <tr>
       <th scope="col">id</th>
       <th scope="col">First Name</th>
@@ -144,8 +145,8 @@ return (
       <th scope="col">Initial Contact Done</th>
       <th scope="col">Actions</th>
     </tr>
+    </div>
   </thead>
-  
   <tbody>
      {clients_list}
   </tbody>

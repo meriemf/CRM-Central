@@ -96,9 +96,26 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
     }
     );
 
-  router.post('/', (req, res) => {
-    console.log("response post", res);
-    const {first_name, last_name, email, tweeter_username} = req.body;
+  // router.post('/', (req, res) => {
+  //   console.log("response post", res);
+  //   const {first_name, last_name, email, tweeter_username} = req.body;
+
+  //   getUserByEmail(email)
+  //     .then(user => {
+
+  //       if (user) {
+  //         res.json({msg: 'Sorry, a user account with this email already exists'});
+  //       } else {
+  //         return addUser(first_name, last_name, email, tweeter_username)
+  //       }
+
+  //     })
+  //     .then(newUser => res.json(newUser))
+  //     .catch(err => res.json({error: err.message}));
+
+  //  });
+     router.post('/', (req, res) => {
+    const {first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
 
     getUserByEmail(email)
       .then(user => {
@@ -106,7 +123,7 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
         if (user) {
           res.json({msg: 'Sorry, a user account with this email already exists'});
         } else {
-          return addUser(first_name, last_name, email, tweeter_username)
+          return addUser(first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made)
         }
 
       })
