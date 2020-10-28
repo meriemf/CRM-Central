@@ -8,7 +8,7 @@ CREATE TABLE projects (
   end_date DATE,
   assigned_to VARCHAR(255),
   type VARCHAR(255),
-  payment_received BOOLEAN,
+  payment_received TEXT,
   payment_date DATE,
   client_id INTEGER REFERENCES clients(id) ON DELETE CASCADE
 );
