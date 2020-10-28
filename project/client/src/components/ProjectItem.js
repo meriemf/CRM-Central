@@ -1,20 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
 import moment from 'moment';
+import{ Link } from 'react-router-dom';
 
-const ProjectItem = ({id, name, number, start_date, end_date, assigned_to, type, payment_received, payment_date, client_id, onDelete}) => {
+
+const ProjectItem = ({
+  id, 
+  name,  
+  start_date, 
+  end_date,
+  assigned_to,
+  type, 
+  payment_received, 
+  payment_date,
+  onDelete
+   
+ }) => {
   return (
     <tr> 
         <th scope="row">{id}</th>
         <td>{name}</td>
-        <td>{number}</td>
-        <td>{moment(start_date).format('DD/MM/YYYY') }</td>
-        <td>{end_date}</td>
+        {/* <td>{number}</td> */}
+        <td>{moment(start_date).format('DD/MM/YYYY')}</td>
+        <td>{moment(end_date).format('DD/MM/YYYY')}</td>
         <td>{assigned_to}</td>
         <td>{type}</td>
-        <td>{client_id}</td>
         <td>{payment_received}</td>
-        <td>{payment_date}</td>
+        <td>{moment(payment_date).format('DD/MM/YYYY')}</td>
         <td> 
         <Link to= {`/projects/${id}/edit`}
             className="btn btn-success mr-1"

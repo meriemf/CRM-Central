@@ -1,41 +1,86 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect} from 'react';
 import axios from 'axios';
+import ClientList from './ClientList';
 
 const AddProject = (props) => {
   
   const [project, setProject] = useState({
     name:'',
-    number:'',
+    // number:'',
     start_date:'',
     end_date:'',
     assigned_to:'',
     type:'',
-    client:'',
     payment_received:'',
     payment_date:'',
+    // client_id:''
   });
+
+  
+
+  // const [clients, setClients] = useState({
+  //   first_name:''
+  // });
+  // useEffect(() => {
+  //   Promise.all([
+  //     axios.get('/clients'),
+  //     console.log(clients)
+  //   ]).then((all) => {
+  //     setClients(all[0].data);   
+  //  });
+   
+  // }, []);
+
+
+  // const getClients = async()=>{
+  //   const response = await axios.get(`/clients`);
+  //   console.log("console log of getClients", response); 
+  //   setClients(response.data);
+  //  }
   
   const handleChange = (e) => {
     setProject({
-      ...project, [e.target.name]: e.target.value
+      ...project,
+      [e.target.name]: e.target.value
     });
+    
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    //Submit Client
+    //Submit Project
+    console.log(project);
     submitProject();
   }
 
   const submitProject=()=>{ 
-    axios.post('/api/projects', project)
-    .then(res=>{
+    axios.post(`/projects`, project)
+    .then((res)=>{
     alert("Project Added!!");
+    props.history.push(`/projects`)
+    },
+    (error)=> {
+      console.log(error);
     });
     }; 
 
 
   return(
     <form onSubmit = {handleSubmit}>
+
+
+       {/* number */}
+       {/* <div className ="form-group">
+        <label htmlFor="number">Number</label>
+        <input 
+        type="text"
+        className="form-control"
+        name="number"
+        placeholder="Enter project number"
+        defaultValue={project.number}
+        onChange={handleChange}
+        required />
+      </div> */}
+
       {/* name */}
       <div className ="form-group">
         <label htmlFor="name">Project Name</label>
@@ -49,18 +94,7 @@ const AddProject = (props) => {
         required />
       </div>
 
-      {/* number */}
-      <div className ="form-group">
-        <label htmlFor="number">Number</label>
-        <input 
-        type="text"
-        className="form-control"
-        name="number"
-        placeholder="Enter project number"
-        defaultValue={project.number}
-        onChange={handleChange}
-        required />
-      </div>
+     
 
       {/* start_date */}
       <div className ="form-group">
@@ -90,7 +124,7 @@ const AddProject = (props) => {
 
       {/* assigned_to */}
       <div className ="form-group">
-        <label htmlFor="assigned_to">Assigned</label>
+        <label htmlFor="assigned_to">Assigned To</label>
         <input 
         type="text"
         className="form-control"
@@ -102,7 +136,7 @@ const AddProject = (props) => {
       </div>
 
       {/* type */}
-      {/* <div className ="form-group">
+      <div className ="form-group">
         <label htmlFor="type">Project Type</label>
         <select 
         type="text"
@@ -111,11 +145,11 @@ const AddProject = (props) => {
         defaultValue={project.type}
         onChange={handleChange}
         required >
-          <option value="Select" selected>Select....</option>
+          <option value="Select">Select....</option>
           <option value="Quality Review">Quality Review</option>
           <option value="Instructional Design">Instructional Design</option>
         </select>
-      </div> */}
+      </div>
 
       {/* client */}
       {/* <div className ="form-group">
@@ -131,7 +165,7 @@ const AddProject = (props) => {
       </div> */}
 
       {/* payment recevied */}
-      {/* <div className ="form-group">
+      <div className ="form-group">
         <label htmlFor="payment_received">Payment Status</label>
         <select 
         type="text"
@@ -140,14 +174,14 @@ const AddProject = (props) => {
         defaultValue={project.payment_received}
         onChange={handleChange}
         required >
-          <option value="Select" selected>Select....</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="Select">Select....</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </select>
-      </div> */}
+      </div>
 
       {/* payment_date */}
-      {/* <div className ="form-group">
+      <div className ="form-group">
         <label htmlFor="payment_date">Payment Date</label>
         <input 
         type="text"
@@ -156,8 +190,24 @@ const AddProject = (props) => {
         placeholder="Payment Date"
         defaultValue={project.payment_date}
         onChange={handleChange}
-        required />
+         />
+      </div>
+
+      {/* <div className ="form-group">
+        <label htmlFor="first_name">Client Name</label>
+        <select>
+      {clients.map(client => (
+        <option
+          key={client.first_name}
+          value={client.first_name}
+        >
+          {client.first_name}
+        </option>
+      ))}
+    </select>
       </div> */}
+
+
       
       <button
       type="submit"

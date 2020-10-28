@@ -29,7 +29,7 @@ return (
 
 
 <>
-<tr class="accordion-toggle collapsed" id="accordion1" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+<tr class="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
     <td class="expand-button"></td>
     <td>{first_name}</td>
     <td>{last_name}</td>
@@ -61,7 +61,7 @@ return (
 
 <td colspan="4">
 
-    <div id="collapseTwo" class="collapse in p-3">
+    <div id={`collapseTwo${id}`} class="collapse in p-3">
      {clientProjects}
 
 
