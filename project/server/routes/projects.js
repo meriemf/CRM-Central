@@ -15,9 +15,9 @@ module.exports = ({getProjects, addProject}) => {
 
   router.post('/', (req, res) => {
     console.log("inside post request",res)
-    const {name, start_date, end_date, assigned_to,type,payment_received,payment_date} = req.body;
+    const {name, start_date, end_date, assigned_to,type,payment_received,payment_date,client_id} = req.body;
 
-      addProject(name, start_date, end_date, assigned_to,type,payment_received,payment_date)
+      addProject(name, start_date, end_date, assigned_to,type,payment_received,payment_date,client_id)
       .then(newProject => res.json(newProject))
       .catch(err => res.json({error: err.message}));
 

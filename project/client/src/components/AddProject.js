@@ -18,27 +18,27 @@ const AddProject = (props) => {
 
   
 
-  // const [clients, setClients] = useState({
-  //   first_name:''
-  // });
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get('/clients'),
-  //     console.log(clients)
-  //   ]).then((all) => {
-  //     setClients(all[0].data);   
-  //  });
+  const [clients, setClients] = useState([]    
+  );
+  useEffect(() => {
+    Promise.all([
+      axios.get('/clients'),
+      console.log(clients)
+    ]).then((all) => {
+      setClients(all[0].data);   
+   });
    
-  // }, []);
+  }, []);
 
 
-  // const getClients = async()=>{
-  //   const response = await axios.get(`/clients`);
-  //   console.log("console log of getClients", response); 
-  //   setClients(response.data);
-  //  }
+  const getClients = async()=>{
+    const response = await axios.get(`/clients`);
+    console.log("console log of getClients", response); 
+    setClients(response.data);
+   }
   
   const handleChange = (e) => {
+    console.log([e.target.name], e.target.value)
     setProject({
       ...project,
       [e.target.name]: e.target.value
@@ -62,6 +62,14 @@ const AddProject = (props) => {
       console.log(error);
     });
     }; 
+
+
+  //  const addCal=() => {
+  //     const [startDate, setStartDate] = useState(new Date());
+  //     return (
+  //       <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+  //     );
+  //   };
 
 
   return(
@@ -121,6 +129,9 @@ const AddProject = (props) => {
         onChange={handleChange}
         required />
       </div>
+
+
+   
 
       {/* assigned_to */}
       <div className ="form-group">
@@ -193,19 +204,23 @@ const AddProject = (props) => {
          />
       </div>
 
-      {/* <div className ="form-group">
+      <div className ="form-group">
         <label htmlFor="first_name">Client Name</label>
-        <select>
+        <div></div>
+        <select onChange={handleChange} name="client_id"
+        type="text"
+        className="form-control">
+        <option value="Select">Select....</option>
       {clients.map(client => (
         <option
-          key={client.first_name}
-          value={client.first_name}
+          key={client.id}
+          value={client.id}
         >
           {client.first_name}
         </option>
       ))}
     </select>
-      </div> */}
+      </div>
 
 
       
