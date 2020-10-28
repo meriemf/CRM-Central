@@ -98,10 +98,10 @@ const getProjects = () => {
       .catch((err) => err);
   };
 
-  const addProject = (name, start_date, end_date, assigned_to,type,payment_received,payment_date) => {
+  const addProject = (name, start_date, end_date, assigned_to,type,payment_received,payment_date,client_id) => {
       const query = {
-          text: `INSERT INTO projects (name, start_date, end_date, assigned_to, type,payment_received, payment_date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *` ,
-          values: [name, start_date, end_date, assigned_to, type, payment_received, payment_date]
+          text: `INSERT INTO projects (name, start_date, end_date, assigned_to, type,payment_received, payment_date,client_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *` ,
+          values: [name, start_date, end_date, assigned_to, type, payment_received, payment_date, client_id]
       }
 
       return db.query(query)
