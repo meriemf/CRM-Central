@@ -16,7 +16,7 @@ return (
     <Route exact path='/clients/:id/edit' component = {EditClient} />
     <Route exact path='/projects' component={ProjectList} />
     <Route exact path='/projects/new' component={AddProject} />
-    <Route exact path='/projects/:id/edit' component={EditProject} />
+    {/* <Route exact path='/projects/:id/edit' component={EditProject} /> */}
   </Switch>
 )
 }

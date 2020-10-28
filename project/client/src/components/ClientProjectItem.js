@@ -1,22 +1,32 @@
 import React from 'react';
+import moment from 'moment';
 
 
 
 const ClientProjectItem = ({id, name, number, start_date, end_date, assigned_to, type, payment_received, payment_date, client_id}) => {
   return (
-    <tr> 
-        <th scope="row">{id}</th>
-        <td>{number}</td>
-        <td>{name}</td>
-        <td>{start_date}</td>
-        <td>{end_date}</td>
-        <td>{assigned_to}</td>
-        <td>{type}</td>
-        <td>{client_id}</td>
-        <td>{payment_received}</td>
-        <td>{payment_date}</td>
-        
+    
+    <table>
+      <thead>
+      <tr>
+       <th scope="col">Name</th>
+       <th scope="col">Type</th>
+       <th scope="col">Client</th>
+       <th scope="col">start_date</th>
     </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td className="col-2">{name}</td>
+        <td className="col-4">{type}</td>
+        <td className="col-6">{id}</td>
+        <th className="col-8">{moment(start_date).format('DD/MM/YYYY')}</th>
+        
+       </tr>
+      </tbody>
+    </table>
+    
+    
   );
 
 }

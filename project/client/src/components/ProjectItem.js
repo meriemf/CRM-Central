@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
-
+import moment from 'moment';
 
 const ProjectItem = ({id, name, number, start_date, end_date, assigned_to, type, payment_received, payment_date, client_id, onDelete}) => {
   return (
@@ -8,7 +8,7 @@ const ProjectItem = ({id, name, number, start_date, end_date, assigned_to, type,
         <th scope="row">{id}</th>
         <td>{name}</td>
         <td>{number}</td>
-        <td>{start_date}</td>
+        <td>{moment(start_date).format('DD/MM/YYYY') }</td>
         <td>{end_date}</td>
         <td>{assigned_to}</td>
         <td>{type}</td>
@@ -17,11 +17,10 @@ const ProjectItem = ({id, name, number, start_date, end_date, assigned_to, type,
         <td>{payment_date}</td>
         <td> 
         <Link to= {`/projects/${id}/edit`}
-        
             className="btn btn-success mr-1"
             role="button"
             aria-pressed="true" 
-            > Edit
+            > Edit          
         </Link>
         <button
             className="btn btn-success mr-1"

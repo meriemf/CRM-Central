@@ -153,26 +153,15 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
 
 
    //delete a client
-  //  const deleteClients = () => {
-  //   const query = {
-  //       text: 'DELETE FROM clients WHERE id= $1::integer'
-  //   };
-  //   return db
-  //       .query(query)
-  //       .then((result) => result.rows)
-  //       .catch((err) => err);
-  // };
-   router.delete('/:id', (req, res) => {
 
-    console.log(req.body);
-    const id = req.params.id; 
-    deleteClients(id)
-   // .then(users => res.json(users))
-    .then(clients => res.json(clients))
-    .catch((err) => res.json({ err }));
-  });
-
-
+    router.put('/:id', (req, res) => {  
+      console.log(req.body);
+     const id = req.params.id; 
+     deleteClients(id)
+     .then(clients => res.json(clients))
+     .catch((err) => res.json({ err }));
+   });
+ 
 
    return router;
 };

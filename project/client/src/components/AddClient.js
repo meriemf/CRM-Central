@@ -29,26 +29,24 @@ const AddClient = (props) => {
 
   const handleSubmit = (event)=> {
     event.preventDefault();
-    //Save the Client
     console.log(client);
      SaveClient();
   }
-  // const SaveClient=()=>{ axios.post(`/api/users`,client)
   const SaveClient=()=>{ axios.post(`/clients`,client)
     .then(
       (res)=>{
      console.log(res);
-     //alert(res.data.message);
      props.history.push('/clients');
      }, 
      (error) => {
        console.log(error);
      });
     };
-   const onCancel = () => {
+  const onCancel = () => {
 
     props.history.push('/clients');
-   };
+  };
+  
   return(
   <form onSubmit = {handleSubmit}>
     <div className ="form-group">
@@ -104,7 +102,6 @@ const AddClient = (props) => {
       type="text"
       className="form-control"
       name="client_type"
-      // placeholder="Enter Department"
       value={client.client_type}
       onChange={handleChange}
       required >
@@ -119,9 +116,8 @@ const AddClient = (props) => {
       type="text"
       className="form-control"
       name="work_type"
-      // placeholder="Select Work type"
       value={client.work_type}
-       onChange={handleChange}
+      onChange={handleChange}
       required >
    <option value="Select" >Select....</option> 
   <option value="Educational Institution">Educational Institution</option> 
@@ -201,3 +197,5 @@ const AddClient = (props) => {
 }
 
 export default AddClient;
+
+
