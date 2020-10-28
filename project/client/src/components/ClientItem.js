@@ -52,7 +52,8 @@ return (
         className="btn btn-success mr-1"
         type="button"
         onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
-        </button></td>
+        </button>
+    </td>
         {isOpen && <div><ul> {clientProjects} </ul>
 </div>}
 </tr>

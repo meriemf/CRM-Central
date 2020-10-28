@@ -40,14 +40,14 @@
 //    });
 // //edit user
 
-//   router.put ('/:id/edit', (req, res) => {
-//     //console.log(req.body);
-//     const id = req.params.id; 
-//     const {first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
-//     EditClient(first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id)
-//   .then ( (result) => { res.send({msg:'client updated'})})
-//   .catch ((err) => { res.send ({msg: err})})
-//   }); 
+  // router.put ('/:id/edit', (req, res) => {
+  //   //console.log(req.body);
+  //   const id = req.params.id; 
+  //   const {first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
+  //   EditClient(first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id)
+  // .then ( (result) => { res.send({msg:'client updated'})})
+  // .catch ((err) => { res.send ({msg: err})})
+  // }); 
 
 //    router.put('/:id', (req, res) => {
 
@@ -116,15 +116,23 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
    });
 //edit user
 
+  // router.put ('/:id/edit', (req, res) => {
+  //   //console.log(req.body);
+  //   const id = req.params.id; 
+  //   const {first_name, last_name, email, tweeter_username} = req.body;
+  //   EditClient(first_name, last_name, email, tweeter_username, id)
+  // .then ( (result) => { res.send({msg:'client updated'})})
+  // .catch ((err) => { res.send ({msg: err})})
+  // }); 
+
   router.put ('/:id/edit', (req, res) => {
     //console.log(req.body);
     const id = req.params.id; 
-    const {first_name, last_name, email, tweeter_username} = req.body;
-    EditClient(first_name, last_name, email, tweeter_username, id)
+    const {first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
+    EditClient(first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id)
   .then ( (result) => { res.send({msg:'client updated'})})
   .catch ((err) => { res.send ({msg: err})})
   }); 
-
 
 
    //delete a client

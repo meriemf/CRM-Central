@@ -15,6 +15,7 @@ const ClientProjectItem = ({id, name, number, start_date, end_date, assigned_to,
         <td>{client_id}</td>
         <td>{payment_received}</td>
         <td>{payment_date}</td>
+        
     </tr>
   );
 
