@@ -108,7 +108,7 @@ const AddProject = (props) => {
       <div className ="form-group">
         <label htmlFor="start_date">Start Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="start_date"
         placeholder="Start Date"
@@ -121,7 +121,7 @@ const AddProject = (props) => {
       <div className ="form-group">
         <label htmlFor="end_date">End Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="end_date"
         placeholder="End Date"
@@ -195,7 +195,7 @@ const AddProject = (props) => {
       <div className ="form-group">
         <label htmlFor="payment_date">Payment Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="payment_date"
         placeholder="Payment Date"
