@@ -1,5 +1,12 @@
 import React , { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 
 const AddClient = (props) => {
@@ -48,6 +55,8 @@ const AddClient = (props) => {
   };
   
   return(
+    <Wrapper>
+      <h1 className="display-7">Add Client</h1>
   <form onSubmit = {handleSubmit}>
     <div className ="form-group">
       <label htmlFor="name">First Name</label>
@@ -124,9 +133,6 @@ const AddClient = (props) => {
   <option value="Business">Business</option></select>
     </div>
 
-
-
-
     <div className ="form-group">
       <label htmlFor="region">Region</label>
       <input 
@@ -193,6 +199,7 @@ const AddClient = (props) => {
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
   </form>
+  </Wrapper>
   )
 }
 

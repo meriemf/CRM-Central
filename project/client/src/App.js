@@ -29,7 +29,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import  Navbar  from './components/Navbar';
+//import  Navbar  from './components/Navbar';
+import NavigationBar from './components/NavigationBar'
+import Sidebar from './components/Sidebar';
 //import  ClientList  from './components/ClientList';
 //import AddClient from './components/AddClient';
 
@@ -46,7 +48,8 @@ function App() {
   <Router>
     {/* <MuiThemeProvider theme={themeDefault}> */}
       <div className="container-fluid">       
-       <Navbar />
+       <NavigationBar />
+       <Sidebar />
        <Routes />
       </div>
     {/* </MuiThemeProvider> */}

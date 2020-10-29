@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProjectItem from './ProjectItem';
-
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 4em;
+  margin-left: 5em;
+  // margin-right: 5em;
+  margin-bottom: 5em;
+`;
 
 
 const ProjectList = () => {
@@ -56,6 +62,8 @@ const ProjectList = () => {
 
 
   return (
+    <Wrapper>
+      <h1 className="display-7">Projects</h1>
     <table className="table table-striped">
 
       <thead>
@@ -77,6 +85,7 @@ const ProjectList = () => {
         {projects_list}
       </tbody>
     </table>
+    </Wrapper>
   );
 
 }

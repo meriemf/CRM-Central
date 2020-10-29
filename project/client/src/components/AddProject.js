@@ -1,6 +1,13 @@
 import React , { useState, useEffect} from 'react';
 import axios from 'axios';
 import ClientList from './ClientList';
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 const AddProject = (props) => {
   
@@ -73,6 +80,8 @@ const AddProject = (props) => {
 
 
   return(
+    <Wrapper>
+      <h1 className="display-7">Add Project</h1>
     <form onSubmit = {handleSubmit}>
 
 
@@ -233,6 +242,7 @@ const AddProject = (props) => {
       </button>
 
     </form>
+    </Wrapper>
   )
 }
 

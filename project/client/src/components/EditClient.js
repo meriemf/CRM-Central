@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 const EditClient = (props) => {
 
@@ -73,7 +79,8 @@ const onCancel = () => {
   props.history.push('/clients');
 };
 return (
-
+<Wrapper>
+<h1 className="display-7">Edit Client</h1>
 <form onSubmit = {handleSubmit}>
     <div className ="form-group">
       <label htmlFor="name">First Name</label>
@@ -220,6 +227,7 @@ return (
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
   </form>
+  </Wrapper>
 
 );
 
