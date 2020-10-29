@@ -11,6 +11,7 @@ const [client, setClient] = useState ({
  
   first_name:'',
   last_name:'',
+  phone_number:'',
   email:'',
   department:'',
   client_type:'',
@@ -98,6 +99,20 @@ return (
       onChange={handleChange}
       required />
     </div>
+
+    <div className ="form-group">
+      <label htmlFor="phoneNumber">Phone Number</label>
+      <input 
+      type="text"
+      className="form-control"
+      name="phone_number"
+      phone_number="phone_number"
+      placeholder="Enter phone number"
+      value={client.phone_number}
+      onChange={handleChange}
+      required />
+    </div>
+
     <div className ="form-group">
       <label htmlFor="email">Email</label>
       <input 
@@ -151,10 +166,6 @@ return (
    <option value="Educational Institution">Educational Institution</option> 
    <option value="Business">Business</option></select>
     </div>
-
-
-
-
     <div className ="form-group">
       <label htmlFor="region">Region</label>
       <input 

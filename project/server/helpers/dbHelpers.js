@@ -3,7 +3,7 @@ module.exports = (db) => {
   const getUsers = () => {
     const query = {
       // text: 'SELECT * FROM users',
-      text: `SELECT * FROM clients WHERE client_status='A'`
+      text: `SELECT * FROM clients WHERE client_status='A' order by id`
     };
 
     return db
@@ -13,12 +13,12 @@ module.exports = (db) => {
   };
 
 
-  const EditClient = (first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id) => {
+  const EditClient = (first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id) => {
     const query = {
 
-      text: `UPDATE clients SET first_name =$1, last_name=$2, email=$3, department=$4,client_type=$5,work_type=$6,region=$7,position_title=$8,tweeter_username=$9, initial_contact_made=$10 WHERE id = $11`,
+      text: `UPDATE clients SET first_name =$1, last_name=$2, phone_number=$3, email=$4, department=$5,client_type=$6,work_type=$7,region=$8,position_title=$9,tweeter_username=$10, initial_contact_made=$11 WHERE id = $12`,
 
-      values: [first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id],
+      values: [first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id],
     };
     
     return db
@@ -49,11 +49,11 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addUser = (first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made) => {
+  const addUser = (first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made) => {
     const query = {
-      text: `INSERT INTO clients (first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-      values: [first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made],
+      text: `INSERT INTO clients (first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+      values: [first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made],
     };
     return db
       .query(query)
@@ -77,7 +77,7 @@ module.exports = (db) => {
 
     const getClientProjects = (id) => {
     const query = {
-        text: `SELECT clients.id as client_id, first_name, last_name, email, projects.start_date as start_date, projects.end_date as end_date, projects.name as name, projects.id as id, projects.type as type
+        text: `SELECT clients.id as client_id, first_name, last_name, phone_number, email, projects.start_date as start_date, projects.end_date as end_date, projects.name as name, projects.id as id, projects.type as type
     FROM clients
     INNER JOIN projects
     ON clients.id = projects.client_id
@@ -92,7 +92,7 @@ module.exports = (db) => {
 
 const getProjects = () => {
   const query = {
-      text: 'SELECT * FROM projects',
+      text: `SELECT * FROM projects WHERE project_status='A'`,
   };
 
   return db
@@ -101,15 +101,52 @@ const getProjects = () => {
       .catch((err) => err);
   };
 
-  const addProject = (name, start_date, end_date, assigned_to,type,payment_received,payment_date,client_id) => {
+  const addProject = (name, start_date, end_date, assigned_to,type, project_stage, payment_received,payment_date,client_id) => {
       const query = {
-          text: `INSERT INTO projects (name, start_date, end_date, assigned_to, type,payment_received, payment_date,client_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *` ,
-          values: [name, start_date, end_date, assigned_to, type, payment_received, payment_date, client_id]
+          text: `INSERT INTO projects (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date,client_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *` ,
+          values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id]
       }
 
       return db.query(query)
           .then(result => result.rows[0])
           .catch(err => err);
+  }
+
+  const EditProject = (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id) => {
+    const query = {
+
+      text: `UPDATE projects SET name =$1, start_date=$2, end_date=$3, assigned_to=$4,type=$5, project_stage=$6, payment_received=$7,payment_date=$8,client_id=$9`,
+
+      values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id],
+    };
+    
+    return db
+    .query(query)
+    .then((result) => result.rows)
+    .catch((err) => err);
+  };
+  
+  const deleteProject = (id) => {
+    const query = {
+
+        text:`UPDATE projects SET project_status='T' WHERE id=$1`,
+
+        values: [id],
+    };
+    return db
+        .query(query)
+        .then((result) => result.rows)
+        .catch((err) => err);
+  };
+  const getSingleProject = (id) => {
+    const query = {
+      text: `SELECT * FROM projects WHERE id= $1 and project_status='A'`,
+      values: [id],
+    };
+    return db 
+    .query (query)
+    .then((result) => result.rows[0])
+    .catch((err) => err);
   }
   return {
     getUsers,
@@ -120,6 +157,10 @@ const getProjects = () => {
     getSingleUser,
     addProject,
     getProjects,
-    getClientProjects
+    getClientProjects,
+    EditProject,
+    deleteProject,
+    getSingleProject
+
   };
 };

@@ -10,6 +10,7 @@ const ProjectItem = ({
   end_date,
   assigned_to,
   type, 
+  project_stage,
   payment_received, 
   payment_date,
   onDelete
@@ -24,6 +25,7 @@ const ProjectItem = ({
         <td>{moment(end_date).format('DD/MM/YYYY')}</td>
         <td>{assigned_to}</td>
         <td>{type}</td>
+        <td>{project_stage}</td>
         <td>{payment_received}</td>
         <td>{moment(payment_date).format('DD/MM/YYYY')}</td>
         <td> 

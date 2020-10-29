@@ -21,10 +21,10 @@ const getClients = async()=>{
  setClients(response.data);
 }
 const handleDelete =(id) => {
-  
+  console.log(id);
   axios.delete(`/clients/${id}`)
   .then( res=> {
-    console.log("res", res);
+    console.log("delete res", res);
     if(res.status !== 200) {
       alert("Not able to delete client");
     }
@@ -33,20 +33,7 @@ const handleDelete =(id) => {
       getClients();
     }
   })
-}
-
-// const clients_list = clients.map((client) => <ClientItem
-//   key = {client.id}
-//   id = {client.id}
-//   first_name = {client.first_name}
-//   last_name = {client.last_name}
-//   email = {client.email}
-//   region = {client.region}
-//   tweeter_username = {client.tweeter_username}
-//   onDelete={handleDelete}
-//   />
-//  )
-
+};
  const clients_list = clients.map((client) => 
  
  <ClientItem
@@ -67,11 +54,10 @@ const handleDelete =(id) => {
  )
 
 return (
-/*<div className="table-responsive">*/
   <table className="table table-striped">
   <thead>
     <tr>
-    <th scope="col">#</th>
+       <th scope="col">id</th>
        <th scope="col">First Name</th>
        <th scope="col">Last Name</th>
        <th scope="col">Email</th>
@@ -89,7 +75,6 @@ return (
      {clients_list}
   </tbody>
 </table>
-/*</div>*/
 );
 
 }

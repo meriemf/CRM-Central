@@ -114,8 +114,10 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
   //     .catch(err => res.json({error: err.message}));
 
   //  });
-     router.post('/', (req, res) => {
-    const {first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
+    router.post('/', (req, res) => {
+
+      console.log(req.body);
+    const {first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
 
     getUserByEmail(email)
       .then(user => {
@@ -123,7 +125,7 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
         if (user) {
           res.json({msg: 'Sorry, a user account with this email already exists'});
         } else {
-          return addUser(first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made)
+          return addUser(first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made)
         }
 
       })
@@ -145,8 +147,8 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
   router.put ('/:id/edit', (req, res) => {
     //console.log(req.body);
     const id = req.params.id; 
-    const {first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
-    EditClient(first_name, last_name, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id)
+    const {first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
+    EditClient(first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id)
   .then ( (result) => { res.send({msg:'client updated'})})
   .catch ((err) => { res.send ({msg: err})})
   }); 
@@ -154,15 +156,24 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
 
    //delete a client
 
-    router.put('/:id', (req, res) => {  
-      console.log(req.body);
-     const id = req.params.id; 
-     deleteClients(id)
-     .then(clients => res.json(clients))
-     .catch((err) => res.json({ err }));
-   });
+  // router.put('/:id', (req, res) => {  
+  //     console.log("inside the route", req.body);
+  //    const id = req.params.id;
+  //    console.log("the id is ", id); 
+  //    deleteClients(id)
+  //    .then(clients => res.json(clients))
+  //    .catch((err) => res.json({ err }));
+  //  });
  
+  router.delete('/:id', (req, res) => {
 
+    console.log(req.body);
+    const id = req.params.id; 
+    deleteClients(id)
+   // .then(users => res.json(users))
+    .then(clients => res.json(clients))
+    .catch((err) => res.json({ err }));
+  });
    return router;
 };
 

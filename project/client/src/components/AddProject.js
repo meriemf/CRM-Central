@@ -11,6 +11,7 @@ const AddProject = (props) => {
     end_date:'',
     assigned_to:'',
     type:'',
+    project_stage:'',
     payment_received:'',
     payment_date:'',
     // client_id:''
@@ -62,15 +63,10 @@ const AddProject = (props) => {
       console.log(error);
     });
     }; 
+  const onCancel = () => {
 
-
-  //  const addCal=() => {
-  //     const [startDate, setStartDate] = useState(new Date());
-  //     return (
-  //       <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
-  //     );
-  //   };
-
+    props.history.push('/projects');
+  };
 
   return(
     <form onSubmit = {handleSubmit}>
@@ -158,6 +154,7 @@ const AddProject = (props) => {
         required >
           <option value="Select">Select....</option>
           <option value="Quality Review">Quality Review</option>
+          <option value="Course Revision">Course Revision</option>
           <option value="Instructional Design">Instructional Design</option>
         </select>
       </div>
@@ -175,7 +172,26 @@ const AddProject = (props) => {
         required />
       </div> */}
 
+
+      <div className ="form-group">
+        <label htmlFor="type">Project Stage</label>
+        <select 
+        type="text"
+        className="form-control"
+        name="project_stage"
+        defaultValue={project.project_stage}
+        onChange={handleChange}
+        required >
+          <option value="Select">Select....</option>
+          <option value="Consulattion">Consulation</option>
+          <option value="Contract Sent">Contract Sent</option>
+          <option value="Contract Signed">Contract Signed</option>
+          <option value="Work In Progress">Work In Progress</option>
+          <option value="Project Completed">Project Completed</option>
+        </select>
+      </div>
       {/* payment recevied */}
+
       <div className ="form-group">
         <label htmlFor="payment_received">Payment Status</label>
         <select 
@@ -230,6 +246,13 @@ const AddProject = (props) => {
       className="btn btn-primary"
       title="Submit">
         Submit
+      </button>
+      <button
+          type="cancel"
+          variant="primary"
+          className="btn btn-primary"
+          title="Cancel"
+          onClick={()=>{ onCancel()}}> Cancel 
       </button>
 
     </form>

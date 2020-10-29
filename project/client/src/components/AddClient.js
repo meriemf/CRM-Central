@@ -7,6 +7,7 @@ const AddClient = (props) => {
   const [client,setClient] = useState({
       first_name:'',
       last_name:'',
+      phone_number:'',
       email:'',
       department:'',
       client_type:'',
@@ -24,7 +25,7 @@ const AddClient = (props) => {
    ...client, // save the previous state
    [e.target.name] : e.target.value 
    });
-
+   console.log(client);
   };
 
   const handleSubmit = (event)=> {
@@ -35,7 +36,7 @@ const AddClient = (props) => {
   const SaveClient=()=>{ axios.post(`/clients`,client)
     .then(
       (res)=>{
-     console.log(res);
+     console.log("response of the post request",res);
      props.history.push('/clients');
      }, 
      (error) => {
@@ -72,6 +73,20 @@ const AddClient = (props) => {
       onChange={handleChange}
       required />
     </div>
+
+    <div className ="form-group">
+      <label htmlFor="phoneNumber">Phone Number</label>
+      <input
+      type="text"      
+      className="form-control"
+      name="phone_number"
+      phone_number="phone_number"
+      placeholder="Enter phone number"
+      value={client.phone_number}
+      onChange={handleChange}
+      />
+    </div>
+
     <div className ="form-group">
       <label htmlFor="email">Email</label>
       <input 

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import ClientProjectItem from './ClientProjectItem'; 
 import axios from 'axios';
-//import Collapsible from 'react-collapsible';
 
 const ClientItem = ({id, first_name, last_name, email,department,client_type,work_type, region,position_title, tweeter_username,initial_contact_made, onDelete}) => {
-//const [isOpen, setIsOpen] = useState(false);
 const [projects, setProjects] = useState([]);
 useEffect(() => {
     Promise.all([
@@ -30,7 +28,8 @@ return (
 
 <>
 <tr class="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
-    <td class="expand-button"></td>
+<td class="expand-button"></td>
+    <th scope="row">{id}</th>
     <td>{first_name}</td>
     <td>{last_name}</td>
     <td>{email}</td>
@@ -43,7 +42,6 @@ return (
     <td>{initial_contact_made}</td>
     <td> 
          <Link to= {`/clients/${id}/edit`}
-        
          className="btn btn-success mr-1"
          role="button"
          aria-pressed="true" 
@@ -61,11 +59,22 @@ return (
 
 <td colspan="4">
 
-    <div id={`collapseTwo${id}`} class="collapse in p-3">
+  <div id={`collapseTwo${id}`} class="collapse in p-3">
+    <table>
+      <thead>
+      <tr>
+       <th scope="col">Name</th>
+       <th scope="col">Type</th>
+       <th scope="col">Client</th>
+       <th scope="col">start_date</th>
+    </tr>
+      </thead>
+      <tbody>
+       
      {clientProjects}
-
-
-    </div>
+      </tbody>
+    </table>
+  </div>
 
 </td>
 </tr>
