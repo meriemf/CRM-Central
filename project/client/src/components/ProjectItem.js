@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-
+import{ Link } from 'react-router-dom';
 
 
 const ProjectItem = ({
@@ -10,8 +10,12 @@ const ProjectItem = ({
   end_date,
   assigned_to,
   type, 
+  project_stage,
   payment_received, 
-  payment_date}) => {
+  payment_date,
+  onDelete
+   
+ }) => {
   return (
     <tr> 
         <th scope="row">{id}</th>
@@ -21,10 +25,22 @@ const ProjectItem = ({
         <td>{moment(end_date).format('DD/MM/YYYY')}</td>
         <td>{assigned_to}</td>
         <td>{type}</td>
+        <td>{project_stage}</td>
         <td>{payment_received}</td>
         <td>{moment(payment_date).format('DD/MM/YYYY')}</td>
-        {/* <td>{client_id}</td> */}
-        <th>Edit | Delete</th>
+        <td> 
+        <Link to= {`/projects/${id}/edit`}
+            className="btn btn-success mr-1"
+            role="button"
+            aria-pressed="true" 
+            > Edit          
+        </Link>
+        <button
+            className="btn btn-success mr-1"
+            type="button"
+            onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
+        </button>
+    </td>
     </tr>
   );
 
@@ -32,3 +48,7 @@ const ProjectItem = ({
 
 
 export default ProjectItem;
+
+
+
+

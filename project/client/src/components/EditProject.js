@@ -1,6 +1,6 @@
-import React , { useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import ClientList from './ClientList';
 import styled from 'styled-components';
 const Wrapper = styled.div`
   margin-top: 5em;
@@ -9,24 +9,23 @@ const Wrapper = styled.div`
   margin-bottom: 5em;
 `;
 
-const AddProject = (props) => {
-  
-  const [project, setProject] = useState({
-    name:'',
-    // number:'',
-    start_date:'',
-    end_date:'',
-    assigned_to:'',
-    type:'',
-    project_stage:'',
-    payment_received:'',
-    payment_date:'',
-    // client_id:''
-  });
+const EditProject = (props) => {
 
-  
+const { id } = props.match.params;
 
-  const [clients, setClients] = useState([]    
+const [project, setProject] = useState ({
+ 
+  name:'',
+  start_date:'',
+  end_date:'',
+  assigned_to:'',
+  type:'',
+  project_stage:'',
+  payment_received:'',
+  payment_date:'',
+  client_id:''
+});
+const [clients, setClients] = useState([]    
   );
   useEffect(() => {
     Promise.all([
@@ -37,50 +36,63 @@ const AddProject = (props) => {
    });
    
   }, []);
-
-
-  const getClients = async()=>{
-    const response = await axios.get(`/clients`);
-    console.log("console log of getClients", response); 
-    setClients(response.data);
-   }
-  
-  const handleChange = (e) => {
-    console.log([e.target.name], e.target.value)
-    setProject({
-      ...project,
-      [e.target.name]: e.target.value
-    });
+useEffect (() => {
+  const getProject = () => {  
+  axios.get(`/projects/${id}/edit`)
+   //axios.get(`/clients/${id}`)
+   .then (
+     res=> {
+     //  console.log(res.data.name);
+    //if (res.data.name) {
+    if (res.data.id) {
     
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //Submit Project
-    console.log(project);
-    submitProject();
-  }
+      setProject(res.data);
+      console.log(res.data);
+    
+    } else {
+      alert('project not found');
+    }
+   });
+ };
+    getProject();
+}, [id]);
 
-  const submitProject=()=>{ 
-    axios.post(`/projects`, project)
-    .then((res)=>{
-    alert("Project Added!!");
-    props.history.push(`/projects`)
-    },
-    (error)=> {
-      console.log(error);
-    });
-    }; 
-  const onCancel = () => {
 
-    props.history.push('/projects');
+
+const handleChange = (event) => {
+  console.log("handle change function");
+  setProject ({
+  ...project, // save the previous state
+  [event.target.name] : event.target.value 
+  });
+
+ };
+ const SaveProject= () => {
+  axios.put(`/projects/${id}/edit`, project)
+   .then (res => {
+    console.log("save project",res);
+     console.log("props",props);
+     props.history.push('/projects');
+ } 
+  
+  );
   };
+ const handleSubmit = (event)=> {
+   event.preventDefault();
+   console.log(project);
+    SaveProject();
+ };
 
-  return(
-    <Wrapper>
-      <h2 className="display-7">Add Project</h2>
-    <form onSubmit = {handleSubmit}>
+const onCancel = () => {
 
-
+  props.history.push('/projects');
+};
+return (
+<Wrapper>
+<h2 className="display-7">Edit Project</h2>
+<br/>
+<form onSubmit = {handleSubmit}>
+    
        {/* number */}
        {/* <div className ="form-group">
         <label htmlFor="number">Number</label>
@@ -102,7 +114,7 @@ const AddProject = (props) => {
         className="form-control"
         name="name"
         placeholder="Enter project name"
-        defaultValue={project.name}
+        value={project.name}
         onChange={handleChange}
         required />
       </div>
@@ -117,7 +129,7 @@ const AddProject = (props) => {
         className="form-control"
         name="start_date"
         placeholder="Start Date"
-        defaultValue={project.start_date}
+        value={project.start_date}
         onChange={handleChange}
         required />
       </div>
@@ -130,15 +142,10 @@ const AddProject = (props) => {
         className="form-control"
         name="end_date"
         placeholder="End Date"
-        defaultValue={project.end_date}
+        value={project.end_date}
         onChange={handleChange}
         required />
       </div>
-
-
-   
-
-      {/* assigned_to */}
       <div className ="form-group">
         <label htmlFor="assigned_to">Assigned To</label>
         <input 
@@ -146,24 +153,21 @@ const AddProject = (props) => {
         className="form-control"
         name="assigned_to"
         placeholder="Contractor Name"
-        defaultValue={project.assigned_to}
+        value={project.assigned_to}
         onChange={handleChange}
         required />
       </div>
-
-      {/* type */}
       <div className ="form-group">
         <label htmlFor="type">Project Type</label>
         <select 
         type="text"
         className="form-control"
         name="type"
-        defaultValue={project.type}
+        value={project.type}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
           <option value="Quality Review">Quality Review</option>
-          <option value="Course Revision">Course Revision</option>
           <option value="Instructional Design">Instructional Design</option>
         </select>
       </div>
@@ -181,33 +185,32 @@ const AddProject = (props) => {
         required />
       </div> */}
 
-
       <div className ="form-group">
         <label htmlFor="type">Project Stage</label>
         <select 
         type="text"
         className="form-control"
-        name="project_stage"
-        defaultValue={project.project_stage}
+        name="stage"
+        defaultValue={project.stage}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
-          <option value="Consulattion">Consulation</option>
+          <option value="Consulattion">Consulattion</option>
           <option value="Contract Sent">Contract Sent</option>
           <option value="Contract Signed">Contract Signed</option>
           <option value="Work In Progress">Work In Progress</option>
           <option value="Project Completed">Project Completed</option>
         </select>
       </div>
-      {/* payment recevied */}
 
+      {/* payment recevied */}
       <div className ="form-group">
         <label htmlFor="payment_received">Payment Status</label>
         <select 
         type="text"
         className="form-control"
         name="payment_received"
-        defaultValue={project.payment_received}
+        value={project.payment_received}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
@@ -224,7 +227,7 @@ const AddProject = (props) => {
         className="form-control"
         name="payment_date"
         placeholder="Payment Date"
-        defaultValue={project.payment_date}
+        value={project.payment_date}
         onChange={handleChange}
          />
       </div>
@@ -252,22 +255,23 @@ const AddProject = (props) => {
       <button
       type="submit"
       variant="primary"
-      className="btn btn-info"
+      className="btn btn-primary"
       title="Submit">
         Submit
       </button>
       &nbsp; &nbsp; &nbsp; 
-      <button
+  <button
           type="cancel"
           variant="primary"
-          className="btn btn-danger"
+          className="btn btn-primary"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
-      </button>
+  </button>
+  </form>
+  </Wrapper>
+);
 
-    </form>
-    </Wrapper>
-  )
 }
 
-export default AddProject;
+
+export default withRouter(EditProject);

@@ -8,7 +8,9 @@ CREATE TABLE projects (
   end_date DATE,
   assigned_to VARCHAR(255),
   type VARCHAR(255),
+  project_stage TEXT,
   payment_received TEXT,
   payment_date DATE,
-  client_id INTEGER REFERENCES clients(id) ON DELETE CASCADE
+  client_id INTEGER REFERENCES clients(id) ON DELETE CASCADE,
+  project_status TEXT DEFAULT 'A'
 );

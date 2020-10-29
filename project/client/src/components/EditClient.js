@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 const EditClient = (props) => {
 
@@ -11,6 +17,7 @@ const [client, setClient] = useState ({
  
   first_name:'',
   last_name:'',
+  phone_number:'',
   email:'',
   department:'',
   client_type:'',
@@ -19,12 +26,13 @@ const [client, setClient] = useState ({
   position_title:'',
   tweeter_username:'',
   initial_contact_made:'',
+  notes:'',
 
 });
 
 useEffect (() => {
   const getClient = () => {  
-   axios.get(`/clients/${id}/edit`)
+  axios.get(`/clients/${id}/edit`)
    //axios.get(`/clients/${id}`)
    .then (
      res=> {
@@ -55,13 +63,9 @@ const handleChange = (event) => {
   axios.put(`/clients/${id}/edit`, client)
    .then (res => {
     console.log("save client",res);
-    //if (res.data.name) {
-     // if (res.data.id) {
      console.log("props",props);
-     // props.history.push('/clients');
      props.history.push('/clients');
-   //}
-  } 
+ } 
   
   );
   };
@@ -77,7 +81,8 @@ const onCancel = () => {
   props.history.push('/clients');
 };
 return (
-
+<Wrapper>
+<h2 className="display-7">Edit Client</h2>
 <form onSubmit = {handleSubmit}>
     <div className ="form-group">
       <label htmlFor="name">First Name</label>
@@ -86,7 +91,7 @@ return (
       className="form-control"
       name="first_name"
       placeholder="Enter first name"
-      defaultValue={client.first_name}
+      value={client.first_name}
       onChange={handleChange}
       required />
     </div>
@@ -98,18 +103,34 @@ return (
       className="form-control"
       name="last_name"
       placeholder="Enter last name"
-      defaultValue={client.last_name}
+      value={client.last_name}
       onChange={handleChange}
       required />
     </div>
+
     <div className ="form-group">
-      <label htmlFor="email">Email</label>
+      <label htmlFor="phoneNumber">Phone Number</label>
       <input 
       type="text"
       className="form-control"
+      name="phone_number"
+      phone_number="phone_number"
+      placeholder="Enter phone number"
+      value={client.phone_number}
+      onChange={handleChange}
+      required />
+    </div>
+
+    <div className ="form-group">
+      <label htmlFor="email">Email</label>
+      <input 
+      type="email"
+      className="form-control"
       name="email"
       placeholder="Enter Email"
-      defaultValue={client.email}
+      pattern=".+@globex.com" 
+      size="30"
+      value={client.email}
       onChange={handleChange}
       required />
     </div>
@@ -121,7 +142,7 @@ return (
       className="form-control"
       name="department"
       placeholder="Enter Department"
-      defaultValue={client.department}
+      value={client.department}
       onChange={handleChange}
       required />
     </div>
@@ -132,7 +153,6 @@ return (
       type="text"
       className="form-control"
       name="client_type"
-      // placeholder="Enter Department"
       value={client.client_type}
       onChange={handleChange}
       required >
@@ -149,18 +169,13 @@ return (
       type="text"
       className="form-control"
       name="work_type"
-      // placeholder="Select Work type"
       value={client.work_type}
-       onChange={handleChange}
-      required >
-   <option value="Select" >Select....</option> 
-  <option value="Educational Institution">Educational Institution</option> 
-  <option value="Business">Business</option></select>
+      onChange={handleChange}
+    required >
+   <option value="select" >Select....</option> 
+   <option value="Educational Institution">Educational Institution</option> 
+   <option value="Business">Business</option></select>
     </div>
-
-
-
-
     <div className ="form-group">
       <label htmlFor="region">Region</label>
       <input 
@@ -168,7 +183,7 @@ return (
       className="form-control"
       name="region"
       placeholder="Enter Region"
-      defaultValue={client.region}
+      value={client.region}
       onChange={handleChange}
       required />
     </div>
@@ -180,7 +195,7 @@ return (
       className="form-control"
       name="position_title"
       placeholder="Enter Position Title"
-      defaultValue={client.position_title}
+      value={client.position_title}
       onChange={handleChange}
       required />
     </div>
@@ -192,7 +207,7 @@ return (
       className="form-control"
       name="tweeter_username"
       placeholder="Enter Tweeter handle"
-      defaultValue={client.tweeter_username}
+      value={client.tweeter_username}
       onChange={handleChange}
       required />
     </div>
@@ -204,29 +219,30 @@ return (
       type="text"
       className="form-control"
       name="initial_contact_made"
-      // placeholder="Enter Department"
       value={client.initial_contact_made}
       onChange={handleChange}
       required >
-    <option value="Select" >Select....</option>
+    <option value="select" >Select....</option>
     <option value="Yes">Yes</option>
     <option value="No">No</option></select>
     </div>
-  <button
+
+    <button
           type="submit"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-info"
           title="Submit"> Submit
   </button>
-  
+  &nbsp; &nbsp; &nbsp; 
   <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-danger"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
   </form>
+  </Wrapper>
 
 );
 
