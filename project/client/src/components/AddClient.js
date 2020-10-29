@@ -1,5 +1,12 @@
 import React , { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 
 const AddClient = (props) => {
@@ -16,6 +23,7 @@ const AddClient = (props) => {
       position_title:'',
       tweeter_username:'',
       initial_contact_made:'',
+      notes:'',
   },
   
   );
@@ -30,8 +38,8 @@ const AddClient = (props) => {
 
   const handleSubmit = (event)=> {
     event.preventDefault();
-    console.log(client);
-     SaveClient();
+    console.log("client",client);
+    SaveClient();
   }
   const SaveClient=()=>{ axios.post(`/clients`,client)
     .then(
@@ -49,6 +57,8 @@ const AddClient = (props) => {
   };
   
   return(
+    <Wrapper>
+      <h1 className="display-7">Add Client</h1>
   <form onSubmit = {handleSubmit}>
     <div className ="form-group">
       <label htmlFor="name">First Name</label>
@@ -90,10 +100,12 @@ const AddClient = (props) => {
     <div className ="form-group">
       <label htmlFor="email">Email</label>
       <input 
-      type="text"
+      type="email"
       className="form-control"
       name="email"
       placeholder="Enter Email"
+      pattern=".+@globex.com" 
+      size="30"
       value={client.email}
       onChange={handleChange}
       required />
@@ -138,9 +150,6 @@ const AddClient = (props) => {
   <option value="Educational Institution">Educational Institution</option> 
   <option value="Business">Business</option></select>
     </div>
-
-
-
 
     <div className ="form-group">
       <label htmlFor="region">Region</label>
@@ -193,6 +202,19 @@ const AddClient = (props) => {
     <option value="Yes">Yes</option>
     <option value="No">No</option></select>
     </div>
+
+    <div className ="form-group">
+      <label htmlFor="note">Notes</label>
+      <textarea 
+      type="text"
+      className="form-control"
+      name="notes"
+      placeholder="Enter notes"
+      value={client.notes}
+      onChange={handleChange}
+       />
+    </div>
+
   <button
           
          type="submit"
@@ -200,6 +222,7 @@ const AddClient = (props) => {
           className="btn btn-primary"
           title="Submit">Submit
   </button>
+  &nbsp; &nbsp; &nbsp; 
   <button
           type="cancel"
           variant="primary"
@@ -208,6 +231,7 @@ const AddClient = (props) => {
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
   </form>
+  </Wrapper>
   )
 }
 

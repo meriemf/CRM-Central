@@ -67,7 +67,7 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients, getSingleUser, getClientProjects }) => {
+module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients, getSingleUser, getClientProjects, addClientNotes }) => {
  
   router.get('/', (req, res) => {
     console.log("inside api users");
@@ -116,8 +116,7 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
   //  });
     router.post('/', (req, res) => {
 
-      console.log(req.body);
-    const {first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made} = req.body;
+    const {first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, notes} = req.body;
 
     getUserByEmail(email)
       .then(user => {
@@ -125,13 +124,20 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
         if (user) {
           res.json({msg: 'Sorry, a user account with this email already exists'});
         } else {
-          return addUser(first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made)
+          return (
+            addUser(first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, notes) 
+          )          
         }
-
+       })
+      .then(newUser => {
+        addClientNotes()
+      
+       //console.log("before adding the notes");
+       //return addClientNotes()
+        res.json(newUser)
       })
-      .then(newUser => res.json(newUser))
       .catch(err => res.json({error: err.message}));
-
+   
    });
 //edit user
 

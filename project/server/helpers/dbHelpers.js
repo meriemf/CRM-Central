@@ -21,10 +21,10 @@ module.exports = (db) => {
       values: [first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id],
     };
     
-    return db
-    .query(query)
-    .then((result) => result.rows)
-    .catch((err) => err);
+    return db.query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+    
   };
 
   const getSingleUser = (id) => {
@@ -48,6 +48,19 @@ module.exports = (db) => {
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
+  const addClientNotes = () => {
+    const query = {
+
+      text: `INSERT INTO client_notes (notes, date, client_id) 
+      VALUES ($1, now(), (select max(id) from clients))`,
+     
+      values: [notes],
+    };
+    return db.query(query)
+    .then((result) => result.rows)
+    .catch((err) => err);
+
+  }
 
   const addUser = (first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made) => {
     const query = {
@@ -55,8 +68,8 @@ module.exports = (db) => {
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
       values: [first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made],
     };
-    return db
-      .query(query)
+    
+  return db.query(query)
       .then((result) => result.rows)
       .catch((err) => err);
   };
@@ -160,7 +173,8 @@ const getProjects = () => {
     getClientProjects,
     EditProject,
     deleteProject,
-    getSingleProject
+    getSingleProject,
+    addClientNotes
 
   };
 };

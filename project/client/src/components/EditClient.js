@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 const EditClient = (props) => {
 
@@ -20,6 +26,7 @@ const [client, setClient] = useState ({
   position_title:'',
   tweeter_username:'',
   initial_contact_made:'',
+  notes:'',
 
 });
 
@@ -74,7 +81,8 @@ const onCancel = () => {
   props.history.push('/clients');
 };
 return (
-
+<Wrapper>
+<h2 className="display-7">Edit Client</h2>
 <form onSubmit = {handleSubmit}>
     <div className ="form-group">
       <label htmlFor="name">First Name</label>
@@ -116,10 +124,12 @@ return (
     <div className ="form-group">
       <label htmlFor="email">Email</label>
       <input 
-      type="text"
+      type="email"
       className="form-control"
       name="email"
       placeholder="Enter Email"
+      pattern=".+@globex.com" 
+      size="30"
       value={client.email}
       onChange={handleChange}
       required />
@@ -216,21 +226,23 @@ return (
     <option value="Yes">Yes</option>
     <option value="No">No</option></select>
     </div>
-  <button
+
+    <button
           type="submit"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-info"
           title="Submit"> Submit
   </button>
-  
+  &nbsp; &nbsp; &nbsp; 
   <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-danger"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
   </form>
+  </Wrapper>
 
 );
 

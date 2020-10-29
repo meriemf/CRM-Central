@@ -27,8 +27,8 @@ return (
 
 
 <>
-<tr class="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
-<td class="expand-button"></td>
+<tr className="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
+<td className="expand-button"></td>
     <th scope="row">{id}</th>
     <td>{first_name}</td>
     <td>{last_name}</td>
@@ -54,12 +54,12 @@ return (
         </button>
     </td>
 </tr>
-<tr class="hide-table-padding">
+<tr className="hide-table-padding">
 <td></td>
 
-<td colspan="4">
+<td colSpan="4">
 
-  <div id={`collapseTwo${id}`} class="collapse in p-3">
+  <div id={`collapseTwo${id}`} className="collapse in p-3">
     <table>
       <thead>
       <tr>
@@ -87,7 +87,7 @@ return (
 
 
 
-//  <tr classNameName="toggle" onClick ={()=> setIsOpen(!isOpen)}> 
+//  <tr classNameNameName="toggle" onClick ={()=> setIsOpen(!isOpen)}> 
 //     <th scope="row">{id}</th>
 //     <td>{first_name}</td>
 //     <td>{last_name}</td>
@@ -103,13 +103,13 @@ return (
 //      <td> 
 //          <Link to= {`/clients/${id}/edit`}
         
-//          className="btn btn-success mr-1"
+//          classNameName="btn btn-success mr-1"
 //          role="button"
 //          aria-pressed="true" 
 //         > Edit
 //         </Link>
 //         <button
-//         className="btn btn-success mr-1"
+//         classNameName="btn btn-success mr-1"
 //         type="button"
 //         onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
 //         </button>

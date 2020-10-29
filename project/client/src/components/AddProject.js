@@ -1,6 +1,13 @@
 import React , { useState, useEffect} from 'react';
 import axios from 'axios';
 import ClientList from './ClientList';
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 const AddProject = (props) => {
   
@@ -69,6 +76,8 @@ const AddProject = (props) => {
   };
 
   return(
+    <Wrapper>
+      <h2 className="display-7">Add Project</h2>
     <form onSubmit = {handleSubmit}>
 
 
@@ -104,7 +113,7 @@ const AddProject = (props) => {
       <div className ="form-group">
         <label htmlFor="start_date">Start Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="start_date"
         placeholder="Start Date"
@@ -117,7 +126,7 @@ const AddProject = (props) => {
       <div className ="form-group">
         <label htmlFor="end_date">End Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="end_date"
         placeholder="End Date"
@@ -211,7 +220,7 @@ const AddProject = (props) => {
       <div className ="form-group">
         <label htmlFor="payment_date">Payment Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="payment_date"
         placeholder="Payment Date"
@@ -243,19 +252,21 @@ const AddProject = (props) => {
       <button
       type="submit"
       variant="primary"
-      className="btn btn-primary"
+      className="btn btn-info"
       title="Submit">
         Submit
       </button>
+      &nbsp; &nbsp; &nbsp; 
       <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-danger"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
       </button>
 
     </form>
+    </Wrapper>
   )
 }
 

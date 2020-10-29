@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ClientItem from './ClientItem';
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 4em;
+  margin-left: 5em;
+  // margin-right: 5em;
+  margin-bottom: 5em;
+`;
 
 const ClientList = () => {
 
@@ -54,6 +61,9 @@ const handleDelete =(id) => {
  )
 
 return (
+/*<div className="table-responsive">*/
+  <Wrapper>
+  <h1 className="display-7">Clients</h1> 
   <table className="table table-striped">
   <thead>
     <tr>
@@ -75,6 +85,8 @@ return (
      {clients_list}
   </tbody>
 </table>
+</Wrapper>
+/*</div>*/
 );
 
 }

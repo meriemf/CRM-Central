@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import styled from 'styled-components';
+const Wrapper = styled.div`
+  margin-top: 5em;
+  margin-left: 7em;
+  margin-right: 20em;
+  margin-bottom: 5em;
+`;
 
 const EditProject = (props) => {
 
@@ -82,7 +88,9 @@ const onCancel = () => {
   props.history.push('/projects');
 };
 return (
-
+<Wrapper>
+<h2 className="display-7">Edit Project</h2>
+<br/>
 <form onSubmit = {handleSubmit}>
     
        {/* number */}
@@ -117,7 +125,7 @@ return (
       <div className ="form-group">
         <label htmlFor="start_date">Start Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="start_date"
         placeholder="Start Date"
@@ -130,7 +138,7 @@ return (
       <div className ="form-group">
         <label htmlFor="end_date">End Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="end_date"
         placeholder="End Date"
@@ -215,7 +223,7 @@ return (
       <div className ="form-group">
         <label htmlFor="payment_date">Payment Date</label>
         <input 
-        type="text"
+        type="date"
         className="form-control"
         name="payment_date"
         placeholder="Payment Date"
@@ -251,6 +259,7 @@ return (
       title="Submit">
         Submit
       </button>
+      &nbsp; &nbsp; &nbsp; 
   <button
           type="cancel"
           variant="primary"
@@ -259,7 +268,7 @@ return (
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
   </form>
-
+  </Wrapper>
 );
 
 }
