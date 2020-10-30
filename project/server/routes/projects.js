@@ -24,9 +24,9 @@ module.exports = ({getProjects, addProject, EditProject, deleteProject, getSingl
 
   router.post('/', (req, res) => {
     console.log("inside post request",res)
-    const {name, start_date, end_date, assigned_to,type, project_stage, payment_received,payment_date,client_id} = req.body;
+    const {name, start_date, end_date, assigned_to,type, project_stage, payment_received,payment_date,client_id, courses_number, project_value} = req.body;
 
-      addProject(name, start_date, end_date, assigned_to,type, project_stage, payment_received,payment_date,client_id)
+      addProject(name, start_date, end_date, assigned_to,type, project_stage, payment_received,payment_date,client_id, courses_number, project_value)
       .then(newProject => res.json(newProject))
       .catch(err => res.json({error: err.message}));
 
@@ -35,8 +35,8 @@ module.exports = ({getProjects, addProject, EditProject, deleteProject, getSingl
    router.put ('/:id/edit', (req, res) => {
     //console.log(req.body);
     const id = req.params.id;
-    const {name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id} = req.body;
-    EditProject(name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, id)
+    const {name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value} = req.body;
+    EditProject(name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value, id)
   .then ( (result) => { res.send({msg:'project updated'})})
   .catch ((err) => { res.send ({msg: err})})
   }); 

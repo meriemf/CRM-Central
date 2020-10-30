@@ -63,7 +63,7 @@ const ProjectList = () => {
 
   return (
     <Wrapper>
-      <h1 className="display-7">Projects</h1>
+    <h2 className="display-7">Projects</h2>
     <table className="table table-striped">
 
       <thead>

@@ -12,5 +12,8 @@ CREATE TABLE projects (
   payment_received TEXT,
   payment_date DATE,
   client_id INTEGER REFERENCES clients(id) ON DELETE CASCADE,
-  project_status TEXT DEFAULT 'A'
+  project_status TEXT DEFAULT 'A',
+  courses_number INTEGER,
+  project_value FLOAT
+
 );

@@ -23,7 +23,9 @@ const [project, setProject] = useState ({
   project_stage:'',
   payment_received:'',
   payment_date:'',
-  client_id:''
+  client_id:'',
+  courses_number:'',
+  project_value:'',
 });
 const [clients, setClients] = useState([]    
   );
@@ -171,7 +173,17 @@ return (
           <option value="Instructional Design">Instructional Design</option>
         </select>
       </div>
-
+      <div className ="form-group">
+        <label htmlFor="courses_number">Courses Number</label>
+        <input 
+        type="text"
+        className="form-control"
+        name="courses_number"
+        //placeholder=""
+        value={project.courses_value}
+        onChange={handleChange}
+         />
+      </div>
       {/* client */}
       {/* <div className ="form-group">
         <label htmlFor="client">Client Name</label>
@@ -191,7 +203,7 @@ return (
         type="text"
         className="form-control"
         name="stage"
-        defaultValue={project.stage}
+        value={project.stage}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
@@ -201,6 +213,42 @@ return (
           <option value="Work In Progress">Work In Progress</option>
           <option value="Project Completed">Project Completed</option>
         </select>
+      </div>
+       {/* project value */}
+       <div className ="form-group">
+        <label htmlFor="project_value">Project Value</label>
+        <input 
+        type="text"
+        className="form-control"
+        name="project_value"
+        //placeholder="Contractor Name"
+        value={project.project_value}
+        onChange={handleChange}
+        />
+      </div>
+      <div className ="form-group">
+        <label htmlFor="hst">HST</label>
+        <input 
+        type="text"
+        className="form-control"
+        name="hst"
+        value  = {Math.round((project.project_value * 0.13) * 100) / 100}
+        //placeholder="Contractor Name"
+        //defaultValue={project.}
+        onChange={handleChange}
+        />
+      </div>
+      <div className ="form-group">
+        <label htmlFor="total_price">Total Price</label>
+        <input 
+        type="text"
+        className="form-control"
+        name="total_price"
+        //placeholder="Contractor Name"
+        //defaultValue={project.project_value}
+        value = {Math.round((parseFloat(project.project_value * 0.13) + parseFloat(project.project_value))* 100) / 100}
+        onChange={handleChange}
+        />
       </div>
 
       {/* payment recevied */}

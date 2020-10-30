@@ -10,7 +10,10 @@ const Wrapper = styled.div`
 `;
 
 const AddProject = (props) => {
-  
+  const [state, setState] = useState ({
+   
+   selectedFile: null,
+  });
   const [project, setProject] = useState({
     name:'',
     // number:'',
@@ -22,6 +25,9 @@ const AddProject = (props) => {
     payment_received:'',
     payment_date:'',
     // client_id:''
+    courses_number:'',
+    project_value:'',
+  
   });
 
   
@@ -38,12 +44,6 @@ const AddProject = (props) => {
    
   }, []);
 
-
-  const getClients = async()=>{
-    const response = await axios.get(`/clients`);
-    console.log("console log of getClients", response); 
-    setClients(response.data);
-   }
   
   const handleChange = (e) => {
     console.log([e.target.name], e.target.value)
@@ -56,11 +56,13 @@ const AddProject = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //Submit Project
-    console.log(project);
     submitProject();
+    fileUploadHandler();
   }
 
   const submitProject=()=>{ 
+
+    console.log("inside submit project", project);
     axios.post(`/projects`, project)
     .then((res)=>{
     alert("Project Added!!");
@@ -73,6 +75,19 @@ const AddProject = (props) => {
   const onCancel = () => {
 
     props.history.push('/projects');
+  };
+  const fileSelectedHandler = (event) => {
+  console.log(event.target.files[0]);
+  setState (event.target.files[0]);
+  };
+
+  const fileUploadHandler = () => {
+   const fd = new FormData();
+   fd.append ('invoice', state.selectedFile) 
+   axios.post ('/home/meriem/', fd)
+        .then ((res) => {
+          console.log(res);
+        });
   };
 
   return(
@@ -102,7 +117,7 @@ const AddProject = (props) => {
         className="form-control"
         name="name"
         placeholder="Enter project name"
-        defaultValue={project.name}
+        value={project.name}
         onChange={handleChange}
         required />
       </div>
@@ -117,7 +132,7 @@ const AddProject = (props) => {
         className="form-control"
         name="start_date"
         placeholder="Start Date"
-        defaultValue={project.start_date}
+        value={project.start_date}
         onChange={handleChange}
         required />
       </div>
@@ -130,7 +145,7 @@ const AddProject = (props) => {
         className="form-control"
         name="end_date"
         placeholder="End Date"
-        defaultValue={project.end_date}
+        value={project.end_date}
         onChange={handleChange}
         required />
       </div>
@@ -146,7 +161,7 @@ const AddProject = (props) => {
         className="form-control"
         name="assigned_to"
         placeholder="Contractor Name"
-        defaultValue={project.assigned_to}
+        value={project.assigned_to}
         onChange={handleChange}
         required />
       </div>
@@ -158,7 +173,7 @@ const AddProject = (props) => {
         type="text"
         className="form-control"
         name="type"
-        defaultValue={project.type}
+        value={project.type}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
@@ -168,6 +183,18 @@ const AddProject = (props) => {
         </select>
       </div>
 
+      <div className ="form-group">
+        <label htmlFor="courses_number">Courses Number</label>
+        <input 
+        type="text"
+        className="form-control"
+        name="courses_number"
+        //placeholder=""
+        value={project.courses_value}
+        onChange={handleChange}
+         />
+      </div>
+  
       {/* client */}
       {/* <div className ="form-group">
         <label htmlFor="client">Client Name</label>
@@ -188,7 +215,7 @@ const AddProject = (props) => {
         type="text"
         className="form-control"
         name="project_stage"
-        defaultValue={project.project_stage}
+        value={project.project_stage}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
@@ -199,6 +226,53 @@ const AddProject = (props) => {
           <option value="Project Completed">Project Completed</option>
         </select>
       </div>
+
+      {/* project value */}
+      <div className ="form-group">
+        <label htmlFor="project_value">Project Value</label>
+        <input 
+        type="text"
+        className="form-control"
+        name="project_value"
+        //placeholder="Contractor Name"
+        value={project.project_value}
+        onChange={handleChange}
+        />
+      </div>
+
+      <div className ="form-group">
+        <label htmlFor="hst">HST</label>
+        <input readOnly
+        type="text"
+        className="form-control"
+        name="hst"
+        value  = {Math.round((project.project_value * 0.13) * 100) / 100}
+        onChange={handleChange}
+        />
+      </div>
+      <div className ="form-group">
+        <label htmlFor="total_price">Total Price</label>
+        <input readOnly
+        type="text"
+        className="form-control"
+        name="total_price"
+        value = {Math.round((parseFloat(project.project_value * 0.13) + parseFloat(project.project_value))* 100) / 100}
+        onChange={handleChange}
+        />
+      </div>
+        
+
+      <div className ="form-group">
+        <label htmlFor="invoice" onClick ={fileUploadHandler}>Invoice</label>
+        <input 
+        type="file"
+        className="form-control"
+        name="invoice"
+        onChange={fileSelectedHandler}
+        />
+      
+      </div>
+       
       {/* payment recevied */}
 
       <div className ="form-group">
@@ -207,7 +281,7 @@ const AddProject = (props) => {
         type="text"
         className="form-control"
         name="payment_received"
-        defaultValue={project.payment_received}
+        value={project.payment_received}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
@@ -224,7 +298,7 @@ const AddProject = (props) => {
         className="form-control"
         name="payment_date"
         placeholder="Payment Date"
-        defaultValue={project.payment_date}
+        value={project.payment_date}
         onChange={handleChange}
          />
       </div>
@@ -246,10 +320,7 @@ const AddProject = (props) => {
       ))}
     </select>
       </div>
-
-
-      
-      <button
+     <button
       type="submit"
       variant="primary"
       className="btn btn-info"
