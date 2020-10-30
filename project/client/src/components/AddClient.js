@@ -58,7 +58,7 @@ const AddClient = (props) => {
   
   return(
     <Wrapper>
-      <h1 className="display-7">Add Client</h1>
+      <h2 className="display-7">Add Client</h2>
   <form onSubmit = {handleSubmit}>
     <div className ="form-group">
       <label htmlFor="name">First Name</label>
@@ -104,7 +104,8 @@ const AddClient = (props) => {
       className="form-control"
       name="email"
       placeholder="Enter Email"
-      pattern=".+@globex.com" 
+      // pattern=".+@globex.com" 
+      pattern = "[^@\s]+@[^@\s]+" 
       size="30"
       value={client.email}
       onChange={handleChange}
@@ -176,7 +177,7 @@ const AddClient = (props) => {
     </div>
 
     <div className ="form-group">
-      <label htmlFor="tweeterUserName">Tweeter handle</label>
+      <label htmlFor="tweeterUserName">Twitter</label>
       <input 
       type="text"
       className="form-control"

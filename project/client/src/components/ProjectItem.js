@@ -20,7 +20,6 @@ const ProjectItem = ({
     <tr> 
         <th scope="row">{id}</th>
         <td>{name}</td>
-        {/* <td>{number}</td> */}
         <td>{moment(start_date).format('DD/MM/YYYY')}</td>
         <td>{moment(end_date).format('DD/MM/YYYY')}</td>
         <td>{assigned_to}</td>

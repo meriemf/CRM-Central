@@ -27,6 +27,20 @@ module.exports = (db) => {
     
   };
 
+  const addNotesEditClient = (notes, id) => {
+    const query = {
+
+      text: `INSERT INTO client_notes (notes, date, client_id) 
+      VALUES ($1, now(), $2)`,
+     
+      values: [notes, id],
+    };
+    return db.query(query)
+    .then((result) => result.rows)
+    .catch((err) => err);
+
+  }
+
   const getSingleUser = (id) => {
     const query = {
       text: `SELECT * FROM clients WHERE id= $1 and client_status='A'`,
@@ -48,7 +62,7 @@ module.exports = (db) => {
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
-  const addClientNotes = () => {
+  const addClientNotes = (notes) => {
     const query = {
 
       text: `INSERT INTO client_notes (notes, date, client_id) 
@@ -114,10 +128,10 @@ const getProjects = () => {
       .catch((err) => err);
   };
 
-  const addProject = (name, start_date, end_date, assigned_to,type, project_stage, payment_received,payment_date,client_id) => {
+  const addProject = (name, start_date, end_date, assigned_to,type, project_stage, payment_received,payment_date, client_id, courses_number, project_value) => {
       const query = {
-          text: `INSERT INTO projects (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date,client_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *` ,
-          values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id]
+          text: `INSERT INTO projects (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date,client_id, courses_number, project_value) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *` ,
+          values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value]
       }
 
       return db.query(query)
@@ -125,12 +139,12 @@ const getProjects = () => {
           .catch(err => err);
   }
 
-  const EditProject = (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id) => {
+  const EditProject = (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value) => {
     const query = {
 
-      text: `UPDATE projects SET name =$1, start_date=$2, end_date=$3, assigned_to=$4,type=$5, project_stage=$6, payment_received=$7,payment_date=$8,client_id=$9`,
+      text: `UPDATE projects SET name =$1, start_date=$2, end_date=$3, assigned_to=$4,type=$5, project_stage=$6, payment_received=$7,payment_date=$8,client_id=$9, courses_number=$10, project_value=$11`,
 
-      values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id],
+      values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value],
     };
     
     return db
@@ -174,7 +188,8 @@ const getProjects = () => {
     EditProject,
     deleteProject,
     getSingleProject,
-    addClientNotes
+    addClientNotes,
+    addNotesEditClient
 
   };
 };

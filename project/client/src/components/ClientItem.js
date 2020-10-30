@@ -16,7 +16,7 @@ useEffect(() => {
   console.log("projects", projects);
   const clientProjects = projects.map((project) => <ClientProjectItem
       key = {project.id}
-      id = {project.id}
+     // id = {project.id}
       name = {project.name}
       start_date = {project.start_date}
       end_date = {project.end_date}
@@ -28,7 +28,7 @@ return (
 
 <>
 <tr className="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
-<td className="expand-button"></td>
+  <td className="expand-button"></td>
     <th scope="row">{id}</th>
     <td>{first_name}</td>
     <td>{last_name}</td>
@@ -65,8 +65,8 @@ return (
       <tr>
        <th scope="col">Name</th>
        <th scope="col">Type</th>
-       <th scope="col">Client</th>
-       <th scope="col">start_date</th>
+       <th scope="col">Start_date</th>
+       <th scope="col">End_date</th>
     </tr>
       </thead>
       <tbody>
@@ -79,48 +79,6 @@ return (
 </td>
 </tr>
 </>
-
-
-
-
-
-
-
-
-//  <tr classNameNameName="toggle" onClick ={()=> setIsOpen(!isOpen)}> 
-//     <th scope="row">{id}</th>
-//     <td>{first_name}</td>
-//     <td>{last_name}</td>
-//     <td>{email}</td>
-//     <td>{department}</td>
-//     <td>{client_type}</td>
-//     <td>{work_type}</td>
-//     <td>{region}</td>
-//     <td>{position_title}</td>
-//     <td>{tweeter_username}</td>
-//     <td>{initial_contact_made}</td>
-    
-//      <td> 
-//          <Link to= {`/clients/${id}/edit`}
-        
-//          classNameName="btn btn-success mr-1"
-//          role="button"
-//          aria-pressed="true" 
-//         > Edit
-//         </Link>
-//         <button
-//         classNameName="btn btn-success mr-1"
-//         type="button"
-//         onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
-//         </button>
-//     </td>
-//         {isOpen && <div><ul> {clientProjects} </ul></div>}
-//   </tr>
-
-
-
-
-
 );
   
 }

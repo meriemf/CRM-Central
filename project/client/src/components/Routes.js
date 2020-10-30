@@ -6,6 +6,7 @@ import EditClient from './EditClient';
 import ProjectList from './ProjectList';
 import AddProject from './AddProject';
 import EditProject from './EditProject';
+import Dashboard from './Dashboard';
 
 const Routes = () => {
 return (
@@ -17,6 +18,7 @@ return (
     <Route exact path='/projects' component={ProjectList} />
     <Route exact path='/projects/new' component={AddProject} />
     <Route exact path='/projects/:id/edit' component = {EditProject} />
+    <Route exact path='/dashboard' component = {Dashboard} />
     {/* <Route exact path='/projects/:id/edit' component={EditProject} /> */}
   </Switch>
 )

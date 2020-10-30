@@ -41,7 +41,7 @@ useEffect (() => {
     if (res.data.id) {
     
       setClient(res.data);
-      console.log(res.data);
+     // console.log(res.data);
     
     } else {
       alert('client not found');
@@ -71,9 +71,7 @@ const handleChange = (event) => {
   };
  const handleSubmit = (event)=> {
    event.preventDefault();
-   
-   console.log(client);
-    SaveClient();
+  SaveClient();
  };
 
 const onCancel = () => {
@@ -128,7 +126,7 @@ return (
       className="form-control"
       name="email"
       placeholder="Enter Email"
-      pattern=".+@globex.com" 
+      pattern="[^@\s]+@[^@\s]+" 
       size="30"
       value={client.email}
       onChange={handleChange}
@@ -201,7 +199,7 @@ return (
     </div>
 
     <div className ="form-group">
-      <label htmlFor="tweeterUserName">Tweeter handle</label>
+      <label htmlFor="tweeterUserName">Twitter</label>
       <input 
       type="text"
       className="form-control"
@@ -225,6 +223,17 @@ return (
     <option value="select" >Select....</option>
     <option value="Yes">Yes</option>
     <option value="No">No</option></select>
+    </div>
+    <div className ="form-group">
+      <label htmlFor="note">Notes</label>
+      <textarea 
+      type="text"
+      className="form-control"
+      name="notes"
+      placeholder="Enter notes"
+      value={client.notes}
+      onChange={handleChange}
+       />
     </div>
 
     <button
