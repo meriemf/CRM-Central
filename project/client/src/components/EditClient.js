@@ -124,12 +124,12 @@ return (
     <div className ="form-group">
       <label htmlFor="email">Email</label>
       <input 
-      type="email"
+      type="text"
       className="form-control"
       name="email"
       placeholder="Enter Email"
-      pattern=".+@globex.com" 
-      size="30"
+      // pattern=".+@globex.com" 
+      // size="30"
       value={client.email}
       onChange={handleChange}
       required />

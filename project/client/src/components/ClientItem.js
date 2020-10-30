@@ -127,4 +127,3 @@ return (
 
 
 export default ClientItem;
-
