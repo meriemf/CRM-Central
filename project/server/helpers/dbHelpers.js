@@ -12,6 +12,20 @@ module.exports = (db) => {
   };
 
 
+
+  const getDashboardData= () => {
+    const query = {
+      // text: 'SELECT * FROM users',
+      text: `SELECT count(*) FROM projects `
+    };
+
+    return db
+      .query(query)
+      .then((result) => console.log(result.rows))
+      .catch((err) => err);
+      
+  };
+
   const EditClient = (first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id) => {
     const query = {
 
@@ -188,7 +202,8 @@ const getProjects = () => {
     deleteProject,
     getSingleProject,
     addClientNotes,
-    addNotesEditClient
+    addNotesEditClient,
+    getDashboardData
 
   };
 };

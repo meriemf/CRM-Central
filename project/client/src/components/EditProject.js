@@ -207,7 +207,7 @@ return (
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
-          <option value="Consulattion">Consulattion</option>
+          <option value="Consulattion">Consultation</option>
           <option value="Contract Sent">Contract Sent</option>
           <option value="Contract Signed">Contract Signed</option>
           <option value="Work In Progress">Work In Progress</option>

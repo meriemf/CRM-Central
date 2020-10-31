@@ -28,8 +28,8 @@ return (
 
 <>
 <tr className="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
-  <td className="expand-button"></td>
-    <th scope="row">{id}</th>
+  {/* <td className="expand-button"></td> */}
+    <td scope="row">{id}</td>
     <td>{first_name}</td>
     <td>{last_name}</td>
     <td>{email}</td>
@@ -55,7 +55,7 @@ return (
     </td>
 </tr>
 <tr className="hide-table-padding">
-<td></td>
+{/* <td></td> */}
 
 <td colSpan="4">
 

@@ -54,6 +54,8 @@ const indexRouter = require('./routes/index');
 const clientsRouter = require('./routes/clients');
 const projectsRouter = require('./routes/projects');
 
+const dashboardRouter = require('./routes/dashboard');
+
 const dbHelpers = require('./helpers/dbHelpers')(db);
 
 const app = express();
@@ -71,6 +73,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //app.use('/api/clients', clientsRouter);
 app.use('/clients', clientsRouter(dbHelpers));
+app.use('/dashboard', dashboardRouter(dbHelpers));
 
 app.use('/projects', projectsRouter(dbHelpers));
 //app.use('/clients/:id/edit', clientsRouter(dbHelpers));

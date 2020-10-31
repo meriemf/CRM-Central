@@ -1,7 +1,10 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import '../App.css';
-import { PieChart, Pie, Cell, Sector } from 'recharts';
+import { PieChart, Pie, Cell, Sector, BarChart,XAxis,YAxis,Tooltip,Legend,
+CartesianGrid,Bar } from 'recharts';
 import styled from 'styled-components';
+import axios from 'axios';
+
 const Wrapper = styled.div`
   margin-top: 5em;
   margin-left: 7em;
@@ -10,59 +13,29 @@ const Wrapper = styled.div`
 `;
 const Dashboard = () => {
 
+  const [data, setData] = useState([]);
+useEffect(() => {
+  Promise.all([
+    axios.get('/dashboard'),
+  ]).then((all) => {
+    setData(all[0].data); 
+    console.log(data)  
+ });
+}, []);
 
-const data =[
-      { name: "facebook", value: 120111},
-      {name: "Instagram", value : 1547870},
-   ]; 
 
-   const renderActiveShape = (props) => {
-    const RADIAN = Math.PI / 180;
-    const {
-      cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-      fill, payload, percent, value,
-    } = props;
-    const sin = Math.sin(-RADIAN * midAngle);
-    const cos = Math.cos(-RADIAN * midAngle);
-    const sx = cx + (outerRadius + 10) * cos;
-    const sy = cy + (outerRadius + 10) * sin;
-    const mx = cx + (outerRadius + 30) * cos;
-    const my = cy + (outerRadius + 30) * sin;
-    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-    const ey = my;
-    const textAnchor = cos >= 0 ? 'start' : 'end';
-  
-    return (
-      <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
-        <Sector
-          cx={cx}
-          cy={cy}
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          fill={fill}
-        />
-        <Sector
-          cx={cx}
-          cy={cy}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          innerRadius={outerRadius + 6}
-          outerRadius={outerRadius + 10}
-          fill={fill}
-        />
-        <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-        <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-        <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
-        <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-          {`(Rate ${(percent * 100).toFixed(2)}%)`}
-        </text>
-      </g>
-    );
-  };
-// const COLORS = ['#0088FE', '#FF8042'];
+  // const data = [
+  //   { name: 'Quality Review Completed', value: 40},
+  //   { name: 'Quality Review in Progress', value: 30 }
+  //   // { name: 'Group C', value: 300 },
+  //   // { name: 'Group D', value: 200 },
+  // ];
+
+
+
+
+// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
 // const RADIAN = Math.PI / 180;
 // const renderCustomizedLabel = ({
 //   cx, cy, midAngle, innerRadius, outerRadius, percent, index,
@@ -71,48 +44,83 @@ const data =[
 //   const x = cx + radius * Math.cos(-midAngle * RADIAN);
 //   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-//   return (
-//     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-//       {`${(percent * 100).toFixed(0)}%`}
-//     </text>
-//   );
-// };
+  
+  //   return (
+
+  //     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+  //     {`${(percent * 100).toFixed(0)}%`}
+  //   </text>
+
+  //   );
+  // };
+
  
 return (
   
   <Wrapper>
+    <div style={{textAlign :"center"}}>
+      <h1> Dashboard</h1>
     <div className = 'App'>
-      <h1> Social network  </h1>
-      <PieChart width={400} height={400}>
-        <Pie
-       //   activeIndex={this.state.activeIndex}
-          activeShape={renderActiveShape}
-          data={data}
-          cx={200}
-          cy={200}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-         // onMouseEnter={this.onPieEnter}
-        />
+
+    <PieChart width={400} height={400}>
+        <Pie dataKey="value" isAnimationActive={false} data={data} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
+       
+        <Tooltip />
       </PieChart>
-      {/* <PieChart width={400} height={400}>
-        <Pie
-          data={data}
-          cx={200}
-          cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {
-            data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-          }
-        </Pie>
-      </PieChart> */}
+
+      <BarChart
+        width={500}
+        height={300}
+        data={data}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
+        barSize={20}
+      >
+        <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
+        <YAxis /> 
+        <Tooltip />
+        <Legend/>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Bar dataKey="value" fill="#8884d8" background={{ fill: '#eee' }} />
+      </BarChart>
+    </div>
+        <div className = 'App' >
+    {/* <BarChart
+        width={300}
+        height={300}
+        data={data}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="value" fill="#8884d8" />
+        <Bar dataKey="value" fill="#82ca9d" />
+      </BarChart> */}
+
+
+      <BarChart
+        width={300}
+        height={300}
+        data={data}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
+      >
+         <CartesianGrid strokeDasharray="3 3" />
+         <XAxis dataKey="name"  />
+        <YAxis />
+        <Tooltip />
+        <Legend />  
+        <Bar dataKey="value" fill="#8884d8" />
+        {/* <Bar dataKey="value" fill="#82ca9d" /> */}
+      </BarChart>
+    </div>
     </div>
   </Wrapper>
 )
@@ -122,6 +130,12 @@ return (
 
 
 export default Dashboard;
+
+
+
+
+
+
 
 
 

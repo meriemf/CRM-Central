@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients, getSingleUser, getClientProjects, addClientNotes, addNotesEditClient }) => {
+module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients, getSingleUser, getClientProjects, addClientNotes, addNotesEditClient}) => {
  
   router.get('/', (req, res) => {
     console.log("inside api users");
@@ -18,6 +18,10 @@ module.exports = ({ getUsers, getUserByEmail, addUser, EditClient, deleteClients
    .catch ((err) => res.json({error: err.message }));
   }
   );
+
+
+
+ 
 
   //list of project of a specific client
 
