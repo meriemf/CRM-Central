@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import ClientProjectItem from './ClientProjectItem'; 
 import axios from 'axios';
+import './ClientItem.css'
 
 const ClientItem = ({id, first_name, last_name, email,department,client_type,work_type, region,position_title, tweeter_username,initial_contact_made, onDelete}) => {
   const [projects, setProjects] = useState([]);
@@ -14,75 +15,6 @@ const ClientItem = ({id, first_name, last_name, email,department,client_type,wor
    });
   }, []);
   console.log("projects", projects);
-<<<<<<< Updated upstream
-  const clientProjects = projects.map((project) => <ClientProjectItem
-      key = {project.id}
-     // id = {project.id}
-      name = {project.name}
-      start_date = {project.start_date}
-      end_date = {project.end_date}
-      type = {project.type}
-      />
-  )
-return (
-
-
-<>
-<tr className="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
-  <td className="expand-button"></td>
-    <th scope="row">{id}</th>
-    <td>{first_name}</td>
-    <td>{last_name}</td>
-    <td>{email}</td>
-    <td>{department}</td>
-    <td>{client_type}</td>
-    <td>{work_type}</td>
-    <td>{region}</td>
-    <td>{position_title}</td>
-    <td>{tweeter_username}</td>
-    <td>{initial_contact_made}</td>
-    <td> 
-         <Link to= {`/clients/${id}/edit`}
-         className="btn btn-success mr-1"
-         role="button"
-         aria-pressed="true" 
-        > Edit
-        </Link>
-        <button
-        className="btn btn-success mr-1"
-        type="button"
-        onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
-        </button>
-    </td>
-</tr>
-<tr className="hide-table-padding">
-<td></td>
-
-<td colSpan="4">
-
-  <div id={`collapseTwo${id}`} className="collapse in p-3">
-    <table>
-      <thead>
-      <tr>
-       <th scope="col">Name</th>
-       <th scope="col">Type</th>
-       <th scope="col">Start_date</th>
-       <th scope="col">End_date</th>
-    </tr>
-      </thead>
-      <tbody>
-       
-     {clientProjects}
-      </tbody>
-    </table>
-  </div>
-
-</td>
-</tr>
-</>
-);
-  
-=======
   const clientProjects = projects.map((project) =>
     <ClientProjectItem
     key = {project.id}
@@ -98,26 +30,26 @@ return (
       <tr className="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
         {/* <td className="expand-button"></td> */}
         {/* <th scope="row">{id}</th> */}
-        <td scope="row">{id}</td>
-        <td>{first_name}</td>
-        <td>{last_name}</td>
-        <td>{email}</td>
-        <td>{department}</td>
-        <td>{client_type}</td>
-        <td>{work_type}</td>
-        <td>{region}</td>
-        <td>{position_title}</td>
-        <td>{tweeter_username}</td>
-        <td>{initial_contact_made}</td>
-        <td> 
+        <td scope="row" style={{columnWidth: "20px"}}>{id}</td>
+        <td style={{columnWidth: "70px"}}>{first_name}</td>
+        <td style={{columnWidth: "70px"}}>{last_name}</td>
+        <td style={{columnWidth: "100px"}}>{email}</td>
+        <td style={{columnWidth: "80px"}}>{department}</td>
+        <td style={{columnWidth: "80px"}}>{client_type}</td>
+        <td style={{columnWidth: "100px"}}>{work_type}</td>
+        <td style={{columnWidth: "80px"}}>{region}</td>
+        <td style={{columnWidth: "80px"}}>{position_title}</td>
+        <td style={{columnWidth: "100px"}}>{tweeter_username}</td>
+        <td style={{columnWidth: "100px"}}>{initial_contact_made}</td>
+        <td style={{columnWidth: "200px"}}> 
           <Link to= {`/clients/${id}/edit`}
-          className="btn btn-success mr-1"
+          className="btn btn-warning"
           role="button"
           aria-pressed="true" 
           > Edit
           </Link>
           <button
-          className="btn btn-success mr-1"
+          className="btn btn-secondary"
           type="button"
           onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
           </button>
@@ -131,13 +63,13 @@ return (
             <table>
               <thead>
               <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
+                <th scope="col" style={{columnWidth: "200px"}}>Name</th>
+                <th scope="col" style={{columnWidth: "200px"}}>Type</th>
                 {/* <th scope="col">Client</th> */}
-                <th scope="col">start_date</th>
+                <th scope="col" style={{columnWidth: "200px"}}>Start Date</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody style={{backgroundColor: "#ecede3"}}>
                 {clientProjects}
               </tbody>
             </table>
@@ -182,7 +114,6 @@ return (
 //         {isOpen && <div><ul> {clientProjects} </ul></div>}
 //   </tr>
 
->>>>>>> Stashed changes
 }
 export default ClientItem;
 

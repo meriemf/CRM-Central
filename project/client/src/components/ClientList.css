@@ -1,12 +1,12 @@
 .table-striped>tbody>tr:nth-child(odd)>td {
-  background-color:  lightyellow;
+  background-color:  #ecede3;
 }
 table {
   position: relative;
 }
 
 th {
-  background-color:	khaki;
+  background-color: #c6c9ad;
   position: sticky;
   top: 0;
 }

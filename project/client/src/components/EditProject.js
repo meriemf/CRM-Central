@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 const Wrapper = styled.div`
-  margin-top: 5em;
+  margin-top: 4em;
   margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
@@ -311,7 +311,7 @@ return (
   <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-secondary"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
   </button>

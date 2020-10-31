@@ -2,7 +2,7 @@ import React , { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 const Wrapper = styled.div`
-  margin-top: 5em;
+  margin-top: 4em;
   margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
@@ -105,10 +105,7 @@ const AddClient = (props) => {
       name="email"
       placeholder="Enter Email"
       // pattern=".+@globex.com" 
-<<<<<<< Updated upstream
-      pattern = "[^@\s]+@[^@\s]+" 
-=======
->>>>>>> Stashed changes
+      // pattern = "[^@\s]+@[^@\s]+" 
       size="30"
       value={client.email}
       onChange={handleChange}
@@ -223,14 +220,14 @@ const AddClient = (props) => {
           
         type="submit"
         variant="primary"
-        className="btn btn-primary"
+        className="btn btn-success"
         title="Submit">Submit
   </button>
   &nbsp; &nbsp; &nbsp; 
   <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-secondary"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
   </button>

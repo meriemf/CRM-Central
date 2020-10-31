@@ -3,8 +3,8 @@ import '../App.css';
 import { PieChart, Pie, Cell, Sector } from 'recharts';
 import styled from 'styled-components';
 const Wrapper = styled.div`
-  margin-top: 5em;
-  margin-left: 7em;
+  margin-top: 4em;
+  margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
 `;
@@ -82,7 +82,7 @@ return (
   
   <Wrapper>
     <div className = 'App'>
-      <h1> Social network  </h1>
+      <h1 className="display-7"> Dashboard  </h1>
       <PieChart width={400} height={400}>
         <Pie
        //   activeIndex={this.state.activeIndex}
