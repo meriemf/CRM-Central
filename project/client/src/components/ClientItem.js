@@ -28,7 +28,7 @@ return (
 
 <>
 <tr className="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
-  <td className="expand-button"></td>
+  {/* <td className="expand-button"></td> */}
     <th scope="row">{id}</th>
     <td>{first_name}</td>
     <td>{last_name}</td>
@@ -42,13 +42,13 @@ return (
     <td>{initial_contact_made}</td>
     <td> 
          <Link to= {`/clients/${id}/edit`}
-         className="btn btn-success mr-1"
+         className="btn btn-info mr-1"
          role="button"
          aria-pressed="true" 
         > Edit
         </Link>
         <button
-        className="btn btn-success mr-1"
+        className="btn btn-danger mr-1"
         type="button"
         onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
         </button>
@@ -56,7 +56,6 @@ return (
 </tr>
 <tr className="hide-table-padding">
 <td></td>
-
 <td colSpan="4">
 
   <div id={`collapseTwo${id}`} className="collapse in p-3">

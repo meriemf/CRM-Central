@@ -1,7 +1,20 @@
-import React from 'react';
-import '../App.css';
-import { PieChart, Pie, Cell, Sector } from 'recharts';
+import React, { useState, useEffect } from 'react';
+import { BarChart, XAxis, YAxis, CartesianGrid, Bar, ResponsiveContainer, PieChart, Pie, Cell, Sector, Tooltip, Legend } from 'recharts';
 import styled from 'styled-components';
+import axios from 'axios';
+
+
+
+const StyledChart1 = styled.div`
+  height: 40%;
+  width: 40%; 
+  text-align: center; /* Aligns <a> inside of NavIcon div */
+  background-color: #F5F5F5;
+  margin: 10px 10px;
+  padding: 12px 6px;
+  border-radius: 5px;
+  
+`;
 const Wrapper = styled.div`
   margin-top: 5em;
   margin-left: 7em;
@@ -9,119 +22,148 @@ const Wrapper = styled.div`
   margin-bottom: 5em;
 `;
 const Dashboard = () => {
-
-
-const data =[
-      { name: "facebook", value: 120111},
-      {name: "Instagram", value : 1547870},
-   ]; 
-
-   const renderActiveShape = (props) => {
-    const RADIAN = Math.PI / 180;
-    const {
-      cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-      fill, payload, percent, value,
-    } = props;
-    const sin = Math.sin(-RADIAN * midAngle);
-    const cos = Math.cos(-RADIAN * midAngle);
-    const sx = cx + (outerRadius + 10) * cos;
-    const sy = cy + (outerRadius + 10) * sin;
-    const mx = cx + (outerRadius + 30) * cos;
-    const my = cy + (outerRadius + 30) * sin;
-    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-    const ey = my;
-    const textAnchor = cos >= 0 ? 'start' : 'end';
   
-    return (
-      <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
-        <Sector
-          cx={cx}
-          cy={cy}
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          fill={fill}
-        />
-        <Sector
-          cx={cx}
-          cy={cy}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          innerRadius={outerRadius + 6}
-          outerRadius={outerRadius + 10}
-          fill={fill}
-        />
-        <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-        <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-        <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
-        <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-          {`(Rate ${(percent * 100).toFixed(2)}%)`}
-        </text>
-      </g>
-    );
-  };
-// const COLORS = ['#0088FE', '#FF8042'];
-// const RADIAN = Math.PI / 180;
-// const renderCustomizedLabel = ({
-//   cx, cy, midAngle, innerRadius, outerRadius, percent, index,
-// }) => {
-//    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-//   const x = cx + radius * Math.cos(-midAngle * RADIAN);
-//   const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const [data1, setData] = useState([]);
+  const [data2, setData2] = useState([]);
+  const [data3, setData3] = useState([]);
+  const [data4, setData4] = useState([]);
+  const [data5, setData5] = useState([]);
+  const [data6, setData6] = useState([]);
+  const [data7, setData7] = useState([]);
+  
+  
+  useEffect(() => {
+    Promise.all([
+      axios.get('/dashboard'),
+    ]).then((all) => {
+    setData(all[0].data[0].rows[0].count);
+    setData2(all[0].data[1].rows[0].count);
+    setData3(all[0].data[2].rows[0].count);
+    setData4(all[0].data[3].rows[0].count);
+    setData5(all[0].data[4].rows[0].count);
+    setData6(all[0].data[5].rows[0].sum);
+    setData7(all[0].data[6].rows[0].sum);
+    });
+  }, []);
 
-//   return (
-//     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-//       {`${(percent * 100).toFixed(0)}%`}
-//     </text>
-//   );
-// };
+ const first = [
+    { name: 'Quality reviews in progress', value: Number(data1) }, { name: 'Quality review completed', value: Number(data2) },
+  ];
+  
+const COLORS = ['#FFC107', '#4CAF50', '#FFBB28', '#FF8042'];
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx, cy, midAngle, innerRadius, outerRadius, percent, index,
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
  
+const second = [
+  {
+    name: 'Current', current: data3,
+  },
+  {
+    name: 'Completed', completed: data4,
+  },
+  {
+    name: 'Upcoming', upcoming: data5,
+  },
+ 
+];
+
+const third = [
+  { name: 'Revenue In Progress', value: data6  },
+  { name: 'Revenue Completed', value: data7 },
+];
+
 return (
   
   <Wrapper>
-    <div className = 'App'>
-      <h1> Social network  </h1>
-      <PieChart width={400} height={400}>
-        <Pie
-       //   activeIndex={this.state.activeIndex}
-          activeShape={renderActiveShape}
-          data={data}
+  <div className ='App'>   
+  {/* <h2>Dashboard</h2> */}
+  <StyledChart1>
+  <h5> Quality reviews </h5>
+  <PieChart width={400} height={400}>
+          <Pie
+          data={first}
           cx={200}
           cy={200}
-          innerRadius={60}
-          outerRadius={80}
+          label={renderCustomizedLabel}
+          //labelLine={true}
+          label
+          labelLine={false}
+          outerRadius={100}
           fill="#8884d8"
           dataKey="value"
-         // onMouseEnter={this.onPieEnter}
-        />
-      </PieChart>
-      {/* <PieChart width={400} height={400}>
+          Legend
+        >
+          {
+            first.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+          }
+        </Pie>
+        {/* <Tooltip/> */}
+        <Legend/>
+  </PieChart>
+  </StyledChart1>
+  {/* <StyledChart1> */}
+  <h5> Projects </h5>
+  <ResponsiveContainer width = "40%" height= {400}>
+  <BarChart
+        width={500}
+        height={300}
+        data={second}
+        margin={{
+          top: 5, right: 30, left: 20, bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip style={{backgroundColor:"black"}}/>
+        <Legend />
+        <Bar dataKey="current" fill="#8884d8" barSize={80} />
+        <Bar dataKey="completed" fill="#82ca9d" barSize={80} />
+        <Bar dataKey="upcoming" fill="#4CAF50" barSize={80} />
+  </BarChart>
+  </ResponsiveContainer>
+  {/* </StyledChart1> */}
+
+<StyledChart1> 
+
+<PieChart width={800} height={400} >
         <Pie
-          data={data}
-          cx={200}
+          data={third}
+          cx={120}
           cy={200}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
+          innerRadius={60}
+          outerRadius={100}
           fill="#8884d8"
+          paddingAngle={5}
+          label={renderCustomizedLabel}
           dataKey="value"
         >
           {
-            data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+            third.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
           }
         </Pie>
-      </PieChart> */}
-    </div>
-  </Wrapper>
+        <Tooltip />
+        <Legend />
+        </PieChart>
+</StyledChart1>
+
+
+</div>
+</Wrapper>
 )
 
 };
 
-
-
 export default Dashboard;
-
-
-

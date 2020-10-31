@@ -220,14 +220,14 @@ const AddClient = (props) => {
           
          type="submit"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-info"
           title="Submit">Submit
   </button>
   &nbsp; &nbsp; &nbsp; 
   <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-danger"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
   </button>

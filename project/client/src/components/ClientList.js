@@ -36,7 +36,7 @@ const handleDelete =(id) => {
       alert("Not able to delete client");
     }
     else {
-      alert("client deleted");
+  //    alert("client deleted");
       getClients();
     }
   })

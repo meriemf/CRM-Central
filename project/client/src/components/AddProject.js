@@ -26,7 +26,7 @@ const AddProject = (props) => {
     payment_date:'',
     // client_id:''
     courses_number:'',
-    project_value:'',
+    project_value:0,
   
   });
 
@@ -189,7 +189,7 @@ const AddProject = (props) => {
         type="text"
         className="form-control"
         name="courses_number"
-        //placeholder=""
+        placeholder="0"
         value={project.courses_value}
         onChange={handleChange}
          />
@@ -257,6 +257,8 @@ const AddProject = (props) => {
         className="form-control"
         name="total_price"
         value = {Math.round((parseFloat(project.project_value * 0.13) + parseFloat(project.project_value))* 100) / 100}
+      //  value = {Math.round((parseFloat(project.project_value * 0.13) + parseFloat(project.project_value))* 100) / 100}
+
         onChange={handleChange}
         />
       </div>

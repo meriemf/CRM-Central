@@ -29,13 +29,13 @@ const ProjectItem = ({
         <td>{moment(payment_date).format('DD/MM/YYYY')}</td>
         <td> 
         <Link to= {`/projects/${id}/edit`}
-            className="btn btn-success mr-1"
+            className="btn btn-info mr-1"
             role="button"
             aria-pressed="true" 
             > Edit          
         </Link>
         <button
-            className="btn btn-success mr-1"
+            className="btn btn-danger mr-1"
             type="button"
             onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
         </button>

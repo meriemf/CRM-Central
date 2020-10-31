@@ -8,7 +8,17 @@ const Wrapper = styled.div`
   margin-right: 20em;
   margin-bottom: 5em;
 `;
-
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+  return [year, month, day].join('-');
+}
 const EditProject = (props) => {
 
 const { id } = props.match.params;
@@ -84,7 +94,7 @@ const handleChange = (event) => {
    console.log(project);
     SaveProject();
  };
-
+console.log(project);
 const onCancel = () => {
 
   props.history.push('/projects');
@@ -131,7 +141,7 @@ return (
         className="form-control"
         name="start_date"
         placeholder="Start Date"
-        value={project.start_date}
+        value={formatDate(new Date(project.start_date))}
         onChange={handleChange}
         required />
       </div>
@@ -144,7 +154,7 @@ return (
         className="form-control"
         name="end_date"
         placeholder="End Date"
-        value={project.end_date}
+        value={formatDate(new Date(project.end_date))}
         onChange={handleChange}
         required />
       </div>
@@ -275,7 +285,7 @@ return (
         className="form-control"
         name="payment_date"
         placeholder="Payment Date"
-        value={project.payment_date}
+        value={formatDate(new Date(project.payment_date))}
         onChange={handleChange}
          />
       </div>
@@ -303,7 +313,7 @@ return (
       <button
       type="submit"
       variant="primary"
-      className="btn btn-primary"
+      className="btn btn-info"
       title="Submit">
         Submit
       </button>
@@ -311,7 +321,7 @@ return (
   <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-danger"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
