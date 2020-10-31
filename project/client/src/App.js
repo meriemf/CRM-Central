@@ -34,6 +34,7 @@ import NavigationBar from './components/NavigationBar'
 import Sidebar from './components/Sidebar';
 //import  ClientList  from './components/ClientList';
 //import AddClient from './components/AddClient';
+//import background from './images/background.jpg'
 
 import Routes from './components/Routes';
 

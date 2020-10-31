@@ -6,23 +6,27 @@ import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-d
 const StyledSideNav = styled.div`
   position: fixed;
   height: 100%;
-  width: 75px;
+  width: 100px;
   z-index: 1;      /* Stay on top of everything */
   top: 3.75em;      /* Stay at the top */
-  background-color: #5bc0de;
+  background-color: #BDB76B;
   overflow-x: hidden;     /* Disable horizontal scroll */
   padding-top: 10px;
 `;
 const NavIcon = styled.div`
+  margin: 0;
+  font-size: 15px;
+  text-align: center;
+  padding:0;
 `;
 const StyledNavItem = styled.div`
-  height: 70px;
-  width: 75px; /* width must be same size as NavBar to center */
+  height: 90px;
+  width: 100px; /* width must be same size as NavBar to center */
   text-align: center; /* Aligns <a> inside of NavIcon div */
   margin-bottom: 0;   /* Puts space between NavItems */
   a {
     font-size: 2.7em;
-    color: ${(props) => props.active ? "white" : "#292b2c"};
+    color: ${(props) => props.active ? "white" : "#362F07"};
     :hover {
       opacity: 0.7;
       text-decoration: none;
@@ -41,6 +45,7 @@ class NavItem extends React.Component {
       <StyledNavItem active={active}>
         <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
           <NavIcon>
+            <p>{this.props.name}</p>
           </NavIcon>
         </Link>
       </StyledNavItem>
@@ -63,7 +68,7 @@ class SideNav extends React.Component {
         },
         {
           path: '/clients/new',
-          name: 'New Client',
+          name: 'Add Client',
           css: 'fa fa-fw fa-user-plus',
           key: 2
         },
@@ -75,7 +80,7 @@ class SideNav extends React.Component {
         },
         {
           path: '/projects/new',
-          name: 'New Project',
+          name: 'Add Project',
           css: 'fa fa-fw fa-plus-square',
           key: 4
         },

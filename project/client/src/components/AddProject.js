@@ -4,7 +4,7 @@ import ClientList from './ClientList';
 import styled from 'styled-components';
 const Wrapper = styled.div`
   margin-top: 5em;
-  margin-left: 7em;
+  margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
 `;
@@ -149,9 +149,6 @@ const AddProject = (props) => {
         onChange={handleChange}
         required />
       </div>
-
-
-   
 
       {/* assigned_to */}
       <div className ="form-group">

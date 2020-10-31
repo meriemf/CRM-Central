@@ -4,7 +4,7 @@ import ProjectItem from './ProjectItem';
 import styled from 'styled-components';
 const Wrapper = styled.div`
   margin-top: 4em;
-  margin-left: 5em;
+  margin-left: 6.3em;
   // margin-right: 5em;
   margin-bottom: 5em;
 `;

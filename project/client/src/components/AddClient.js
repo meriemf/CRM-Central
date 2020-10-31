@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 const Wrapper = styled.div`
   margin-top: 5em;
-  margin-left: 7em;
+  margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
 `;
@@ -105,7 +105,10 @@ const AddClient = (props) => {
       name="email"
       placeholder="Enter Email"
       // pattern=".+@globex.com" 
+<<<<<<< Updated upstream
       pattern = "[^@\s]+@[^@\s]+" 
+=======
+>>>>>>> Stashed changes
       size="30"
       value={client.email}
       onChange={handleChange}
@@ -218,10 +221,10 @@ const AddClient = (props) => {
 
   <button
           
-         type="submit"
-          variant="primary"
-          className="btn btn-primary"
-          title="Submit">Submit
+        type="submit"
+        variant="primary"
+        className="btn btn-primary"
+        title="Submit">Submit
   </button>
   &nbsp; &nbsp; &nbsp; 
   <button
