@@ -4,11 +4,10 @@ import ProjectItem from './ProjectItem';
 import styled from 'styled-components';
 const Wrapper = styled.div`
   margin-top: 4em;
-  margin-left: 5em;
-  // margin-right: 5em;
+  margin-left: 8em;
+  margin-right: 2em;
   margin-bottom: 5em;
 `;
-
 
 const ProjectList = () => {
 
@@ -65,7 +64,6 @@ const ProjectList = () => {
     <Wrapper>
     <h2 className="display-7">Projects</h2>
     <table className="table table-striped">
-
       <thead>
         <tr>
           <th scope="col">Number</th>
@@ -81,7 +79,7 @@ const ProjectList = () => {
         </tr>
       </thead>
       
-      <tbody>
+      <tbody style={{backgroundColor: "#ecede3"}}>
         {projects_list}
       </tbody>
     </table>

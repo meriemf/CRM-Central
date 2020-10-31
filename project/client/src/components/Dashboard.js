@@ -16,8 +16,8 @@ const StyledChart1 = styled.div`
   
 `;
 const Wrapper = styled.div`
-  margin-top: 5em;
-  margin-left: 7em;
+  margin-top: 4em;
+  margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
 `;

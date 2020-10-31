@@ -1,5 +1,16 @@
 *{
   margin :0;
   padding: 0;
-  font-family: Helvetica, sans-serif;
 }
+body{
+  /* background-image: url(./images/background.jpg); */
+
+  background-image: radial-gradient(circle, #FFFFE0, #c6c9ad);
+  background-position: 'center';
+  background-size: 'cover';
+  background-repeat: 'no-repeat';
+  opacity: 10;
+}
+/* #root {
+  z-index: 2;
+} */
