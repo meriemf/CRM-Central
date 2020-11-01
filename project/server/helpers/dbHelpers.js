@@ -3,36 +3,36 @@ module.exports = (db) => {
   const getDashboardData = () => {
     //const output = [];
     console.log ("inside the function");
-    const query1 = { // quality reviews completed
+    const query1 = { // quality reviews in progress
 
-      text: `SELECT COUNT(*) FROM projects WHERE type='Quality Review' and project_stage ='Work In Progress' and project_status='A'`
+      text: `SELECT COUNT(*) FROM projects WHERE type='Quality Review' and project_stage ='Work In Progress' and project_status = 'A'`
         
     };
-    const query2 = { // quality reviews in progress
-      text: `SELECT COUNT(*) FROM projects WHERE type='Quality Review' and project_stage ='Project Completed' and project_status='A';`
+    const query2 = { // quality reviews completed
+      text: `SELECT COUNT(*) FROM projects WHERE type='Quality Review' and project_stage ='Project Completed' and project_status = 'A';`
     };
 
-    const query3 = {   //upcoming projects
-      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Work In Progress' and project_status='A'`
+    const query3 = {   //current projects
+      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Work In Progress' and project_status = 'A'`
 
     };
     
-    const query4 = {   //current projects
-      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Project Completed' and project_status='A'`
+    const query4 = {   //completed projects
+      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Project Completed' and project_status = 'A'`
 
        };
-    const query5 = {   //completed
-      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Contract Signed' and project_status='A'`
+    const query5 = {   //upcoming
+      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Contract Signed' and project_status = 'A'`
 
     };
      
     const query6 = {   //revenue in progress
 
-      text: `SELECT SUM(project_value) FROM projects WHERE project_stage='Work In Progress' and project_status='A'`
+      text: `SELECT SUM(project_value) FROM projects WHERE project_stage='Work In Progress' and project_status = 'A'`
     };
     const query7 = {   //revenue completed
 
-      text: `SELECT SUM(project_value) FROM projects WHERE project_stage='Project Completed' and project_status='A'`
+      text: `SELECT SUM(project_value) FROM projects WHERE project_stage='Project Completed' and project_status = 'A'`
     };
 
  const promisesArray=[db.query(query1), db.query(query2), db.query(query3), db.query(query4), db.query(query5), db.query(query6), db.query(query7)];
@@ -249,12 +249,12 @@ const getProjects = () => {
           .catch(err => err);
   }
 
-  const EditProject = (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value,id) => {
+  const EditProject = (name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value, id) => {
     const query = {
 
       text: `UPDATE projects SET name =$1, start_date=$2, end_date=$3, assigned_to=$4,type=$5, project_stage=$6, payment_received=$7,payment_date=$8,client_id=$9, courses_number=$10, project_value=$11 WHERE id=$12`,
 
-      values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value,id],
+      values: [name, start_date, end_date, assigned_to, type, project_stage, payment_received, payment_date, client_id, courses_number, project_value, id],
     };
     
     return db

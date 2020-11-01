@@ -79,7 +79,7 @@ const handleChange = (event) => {
  const SaveProject= () => {
   axios.put(`/projects/${id}/edit`, project)
    .then (res => {
-    console.log("save project",res);
+    //console.log("save project",res);
      console.log("props",props);
      props.history.push('/projects');
    }   
