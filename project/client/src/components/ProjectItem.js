@@ -30,15 +30,22 @@ const ProjectItem = ({
       <td>{moment(payment_date).format('DD/MM/YYYY')}</td>
       <td> 
         <Link to= {`/projects/${id}/edit`}
-            className="btn btn-success"
-            role="button"
-            aria-pressed="true" 
-            > Edit          
+          className="btn btn-outline-success btn-sm rounded-0"
+          role="button"
+          aria-pressed="true" 
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Edit"
+          ><i class="fa fa-edit"></i>
         </Link>
+        &nbsp;
         <button
-            className="btn btn-secondary"
-            type="button"
-            onClick={()=>{if (window.confirm('Are you sure you wish to delete this project?')) onDelete(id)}}> Delete
+          className="btn btn-outline-danger btn-sm rounded-0"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Delete"
+          type="button"
+          onClick={()=>{if (window.confirm('Are you sure you wish to delete this project?')) onDelete(id)}}><i class="fa fa-trash"></i>
         </button>
       </td>
     </tr>

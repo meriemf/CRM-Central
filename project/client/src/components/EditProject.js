@@ -307,11 +307,11 @@ return (
     </select>
       </div>      
       <button
-        type="submit"
-        variant="primary"
-        className="btn btn-info"
-        title="Submit">
-          Submit
+      type="submit"
+      variant="primary"
+      className="btn btn-success"
+      title="Submit">
+        Submit
       </button>
       &nbsp; &nbsp; &nbsp; 
       <button

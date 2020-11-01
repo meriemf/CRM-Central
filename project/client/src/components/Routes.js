@@ -10,7 +10,7 @@ import Dashboard from './Dashboard';
 const Routes = () => {
 return (
   <Switch >
-    <Route exact path='/' component ={ClientList} />
+    <Route exact path='/' component ={Dashboard} />
     <Route exact path='/clients' component = {ClientList} />
     <Route exact path='/clients/new' component = {AddClient} />
     <Route exact path='/clients/:id/edit' component = {EditClient} />
