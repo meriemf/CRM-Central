@@ -79,7 +79,7 @@ const handleChange = (event) => {
  const SaveProject= () => {
   axios.put(`/projects/${id}/edit`, project)
    .then (res => {
-    console.log("save project",res);
+    //console.log("save project",res);
      console.log("props",props);
      props.history.push('/projects');
    }   
@@ -209,7 +209,7 @@ return (
         <select 
         type="text"
         className="form-control"
-        name="stage"
+        name="project_stage"
         value={project.project_stage}
         onChange={handleChange}
         required >

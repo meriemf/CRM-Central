@@ -48,7 +48,7 @@ const Dashboard = () => {
   }, []);
 
  const first = [
-    { name: 'Quality Reviews in Progress', value: Number(data1) }, { name: 'Quality Reviewd Completed', value: Number(data2) },
+    { name: 'Quality Reviews in Progress', value: Number(data1) }, { name: 'Quality Reviews Completed', value: Number(data2) },
   ];
   
   const COLORS = ['#FFA500', '#20B2AA', '#FFBB28', '#FF8042'];
