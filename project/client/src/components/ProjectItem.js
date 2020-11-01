@@ -36,7 +36,7 @@ const ProjectItem = ({
           data-toggle="tooltip"
           data-placement="top"
           title="Edit"
-          ><i class="fa fa-edit"></i>
+          ><i className="fa fa-edit"></i>
         </Link>
         &nbsp;
         <button
@@ -45,7 +45,7 @@ const ProjectItem = ({
           data-placement="top"
           title="Delete"
           type="button"
-          onClick={()=>{if (window.confirm('Are you sure you wish to delete this project?')) onDelete(id)}}><i class="fa fa-trash"></i>
+          onClick={()=>{if (window.confirm('Are you sure you wish to delete this project?')) onDelete(id)}}><i className="fa fa-trash"></i>
         </button>
       </td>
     </tr>
@@ -55,7 +55,3 @@ const ProjectItem = ({
 
 
 export default ProjectItem;
-
-
-
-

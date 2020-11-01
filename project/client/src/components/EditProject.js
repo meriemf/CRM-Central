@@ -214,7 +214,7 @@ return (
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
-          <option value="Consulattion">Consulattion</option>
+          <option value="Consulation">Consultation</option>
           <option value="Contract Sent">Contract Sent</option>
           <option value="Contract Signed">Contract Signed</option>
           <option value="Work In Progress">Work In Progress</option>
@@ -248,7 +248,7 @@ return (
       <div className ="form-group">
         <label htmlFor="total_price">Total Price (CAD$)</label>
         <input 
-        type="text"
+        type="number"
         className="form-control"
         name="total_price"
         //placeholder="Contractor Name"
@@ -290,7 +290,21 @@ return (
       <div className ="form-group">
         <label htmlFor="first_name">Client Name</label>
         <div></div>
-        <select onChange={handleChange} name="client_id"
+        {/* <select onChange={handleChange} name="client_id"
+        type="text"
+        className="form-control">
+        <option value="Select">Select....</option>
+      {clients.map(client => (
+        <option
+          key={client.id}
+          value={client.id}
+        >
+          {client.first_name}
+        </option>
+      ))} */}
+
+
+<select onChange={handleChange} name="client_id"
         type="text"
         className="form-control"
         value = {project.client_id}
@@ -304,6 +318,7 @@ return (
           {client.first_name}
         </option>
       ))}
+
     </select>
       </div>      
       <button

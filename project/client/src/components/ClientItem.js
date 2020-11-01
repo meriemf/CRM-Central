@@ -50,7 +50,7 @@ const ClientItem = ({id, first_name, last_name, email,department,client_type,wor
           data-toggle="tooltip"
           data-placement="top"
           title="Edit"
-          ><i class="fa fa-edit"></i>
+          ><i className="fa fa-edit"></i>
           </Link>
           &nbsp;
           <button
@@ -59,7 +59,7 @@ const ClientItem = ({id, first_name, last_name, email,department,client_type,wor
           data-placement="top"
           title="Delete"
           type="button"
-          onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}><i class="fa fa-trash"></i>
+          onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}><i className="fa fa-trash"></i>
           </button>
         </td>
       </tr>

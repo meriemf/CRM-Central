@@ -11,6 +11,9 @@ const projectsRouter = require('./routes/projects');
 const dashboardRouter = require ('./routes/dashboard');
 
 
+
+// const dashboardRouter = require('./routes/dashboard');
+
 const dbHelpers = require('./helpers/dbHelpers')(db);
 
 const app = express();
@@ -28,11 +31,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //app.use('/api/clients', clientsRouter);
 app.use('/clients', clientsRouter(dbHelpers));
+// app.use('/dashboard', dashboardRouter(dbHelpers));
 
 app.use('/projects', projectsRouter(dbHelpers));
 app.use ('/dashboard', dashboardRouter(dbHelpers));
 //app.use('/clients/:id/edit', clientsRouter(dbHelpers));
 //app.use('/api/users/:id', usersRouter(dbHelpers));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

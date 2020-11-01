@@ -30,6 +30,20 @@ const [client, setClient] = useState ({
 
 });
 
+
+// const [notes1, setNotes] = useState([]    
+//   );
+//   useEffect(() => {
+//     Promise.all([
+//       axios.get('/notes'),
+//       console.log(`Notes ,${notes1}`)
+//     ]).then((all) => {
+//       setNotes(all[0].data);   
+//    });
+   
+//   }, []);
+
+
 useEffect (() => {
   const getClient = () => {  
   axios.get(`/clients/${id}/edit`)
@@ -122,7 +136,7 @@ return (
     <div className ="form-group">
       <label htmlFor="email">Email</label>
       <input 
-      type="email"
+      type="text"
       className="form-control"
       name="email"
       placeholder="Enter Email"
