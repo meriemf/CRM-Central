@@ -1,4 +1,72 @@
 module.exports = (db) => {
+
+  const getDashboardData = () => {
+    //const output = [];
+    console.log ("inside the function");
+    const query1 = { // quality reviews completed
+
+      text: `SELECT COUNT(*) FROM projects WHERE type='Quality Review' and project_stage ='Work In Progress'`
+        
+    };
+    const query2 = { // quality reviews in progress
+      text: `SELECT COUNT(*) FROM projects WHERE type='Quality Review' and project_stage ='Project Completed';`
+    };
+
+    const query3 = {   //upcoming projects
+      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Work In Progress'`
+
+    };
+    
+    const query4 = {   //current projects
+      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Project Completed'`
+
+       };
+    const query5 = {   //completed
+      text: `SELECT COUNT(*) FROM projects WHERE project_stage='Contract Sent'`
+
+    };
+     
+    const query6 = {   //revenue in progress
+
+      text: `SELECT SUM(project_value) FROM projects WHERE project_stage='Work In Progress'`
+    };
+    const query7 = {   //revenue completed
+
+      text: `SELECT SUM(project_value) FROM projects WHERE project_stage='Project Completed'`
+    };
+
+ const promisesArray=[db.query(query1), db.query(query2), db.query(query3), db.query(query4), db.query(query5), db.query(query6), db.query(query7)];
+ //const promisesArray=[db.query(query1), db.query(query2)];
+ return Promise.all(promisesArray)
+ .then (result => {
+
+  console.log(result);
+  return result;
+ })
+  }
+//  return  db.query(query)
+//            .then ((res1) => { 
+                   
+//                 //  output.push(res1.rows)
+//                 db.query(query2)
+//                   .then ((result) => { 
+//                     //console.log(result.rows)
+//                     //output.push(res2.rows);
+//                     //console.log(res2);
+                   
+//                     result.rows.push(res1.rows[0])
+//                     console.log(result.rows)
+//                     return result.rows
+//                   })
+//                  // .catch ((err) => err);
+//                 })
+//      // return db
+//               };
+
+
+
+
+  
   const getUsers = () => {
     const query = {
       // text: 'SELECT * FROM users',
@@ -13,18 +81,18 @@ module.exports = (db) => {
 
 
 
-  const getDashboardData= () => {
-    const query = {
-      // text: 'SELECT * FROM users',
-      text: `SELECT count(*) FROM projects `
-    };
+  // const getDashboardData= () => {
+  //   const query = {
+  //     // text: 'SELECT * FROM users',
+  //     text: `SELECT count(*) FROM projects `
+  //   };
 
-    return db
-      .query(query)
-      .then((result) => console.log(result.rows))
-      .catch((err) => err);
+  //   return db
+  //     .query(query)
+  //     .then((result) => console.log(result.rows))
+  //     .catch((err) => err);
       
-  };
+  // };
 
   const EditClient = (first_name, last_name, phone_number, email, department, client_type, work_type, region, position_title, tweeter_username, initial_contact_made, id) => {
     const query = {
@@ -40,19 +108,48 @@ module.exports = (db) => {
     
   };
 
+  const getNotes = (id) => {
+    const query = {
+      // text: 'SELECT * FROM users',
+      text: `SELECT * FROM client_notes WHERE client_id=$1`,
+      values: [id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const addNotesEditClient = (notes, id) => {
     const query = {
 
       text: `INSERT INTO client_notes (notes, date, client_id) 
       VALUES ($1, now(), $2)`,
-     
-      values: [notes, id],
+      // text: `UPDATE client_notes SET notes=$1, date=now(), client_id=$2 WHERE client_id=$2`,
+      // values: [notes, id],
     };
     return db.query(query)
     .then((result) => result.rows)
     .catch((err) => err);
 
   }
+
+
+
+
+  // const updateNotesEditClient = (notes, id) => {
+  //   const query = {
+
+  //     text: `UPDATE client_notes SET notes=$1, date=now(), client_id=$2`,
+  //     values: [notes, id],
+  //   };
+  //   return db.query(query)
+  //   .then((result) => result.rows)
+  //   .catch((err) => err);
+
+  // }
+
 
   const getSingleUser = (id) => {
     const query = {
@@ -203,7 +300,9 @@ const getProjects = () => {
     getSingleProject,
     addClientNotes,
     addNotesEditClient,
-    getDashboardData
+    getDashboardData,
+    getNotes
+    
 
   };
 };

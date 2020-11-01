@@ -6,23 +6,29 @@ import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-d
 const StyledSideNav = styled.div`
   position: fixed;
   height: 100%;
-  width: 75px;
+  width: 100px;
   z-index: 1;      /* Stay on top of everything */
-  top: 3.75em;      /* Stay at the top */
-  background-color: #5bc0de;
+  top: 3.7em;      /* Stay at the top */
+  background-color: #8e9561;
   overflow-x: hidden;     /* Disable horizontal scroll */
   padding-top: 10px;
 `;
 const NavIcon = styled.div`
+  font-family: Tahoma;
+  margin-top: 5px;
+  font-size: 11px;
+  text-align: center;
+  padding:0;
 `;
 const StyledNavItem = styled.div`
-  height: 70px;
-  width: 75px; /* width must be same size as NavBar to center */
+  padding-top: 25px;
+  height: 90px;
+  width: 100px; /* width must be same size as NavBar to center */
   text-align: center; /* Aligns <a> inside of NavIcon div */
   margin-bottom: 0;   /* Puts space between NavItems */
   a {
     font-size: 2.7em;
-    color: ${(props) => props.active ? "white" : "#292b2c"};
+    color: ${(props) => props.active ? "white" : "#362F07"};
     :hover {
       opacity: 0.7;
       text-decoration: none;
@@ -41,6 +47,7 @@ class NavItem extends React.Component {
       <StyledNavItem active={active}>
         <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
           <NavIcon>
+            <p>{this.props.name}</p>
           </NavIcon>
         </Link>
       </StyledNavItem>
@@ -56,35 +63,35 @@ class SideNav extends React.Component {
       activePath: props.location.pathname,
       items: [
         {
+          path: '/dashboard',
+          name: 'Dashboard',
+          css: 'fa fa-fw fa-chart-area',
+          key: 1
+        },
+        {
           path: '/clients', /* path is used as id to check which NavItem is active basically */
           name: 'Client',
           css: 'fa fa-fw fa-user-circle',
-          key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
+          key: 2 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
         },
         {
           path: '/clients/new',
-          name: 'New Client',
+          name: 'Add Client',
           css: 'fa fa-fw fa-user-plus',
-          key: 2
+          key: 3
         },
         {
           path: '/projects',
           name: 'Projects',
-          css: 'fas fa-envelope-square',
-          key: 3
-        },
-        {
-          path: '/projects/new',
-          name: 'New Project',
-          css: 'fa fa-fw fa-plus-square',
+          css: 'fas fa-tasks',
           key: 4
         },
         {
-          path: '/dashboard',
-          name: 'Dashboard',
-          css: 'fa fa-fw fa-chart-area',
+          path: '/projects/new',
+          name: 'Add Project',
+          css: 'fa fa-fw fa-plus-square',
           key: 5
-        },
+        }
       ]
     }  
   }

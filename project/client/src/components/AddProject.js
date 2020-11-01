@@ -3,8 +3,8 @@ import axios from 'axios';
 import ClientList from './ClientList';
 import styled from 'styled-components';
 const Wrapper = styled.div`
-  margin-top: 5em;
-  margin-left: 7em;
+  margin-top: 4em;
+  margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
 `;
@@ -26,7 +26,7 @@ const AddProject = (props) => {
     payment_date:'',
     // client_id:''
     courses_number:'',
-    project_value:'',
+    project_value:0,
   
   });
 
@@ -150,9 +150,6 @@ const AddProject = (props) => {
         required />
       </div>
 
-
-   
-
       {/* assigned_to */}
       <div className ="form-group">
         <label htmlFor="assigned_to">Assigned To</label>
@@ -189,7 +186,7 @@ const AddProject = (props) => {
         type="text"
         className="form-control"
         name="courses_number"
-        //placeholder=""
+        placeholder="0"
         value={project.courses_value}
         onChange={handleChange}
          />
@@ -257,6 +254,8 @@ const AddProject = (props) => {
         className="form-control"
         name="total_price"
         value = {Math.round((parseFloat(project.project_value * 0.13) + parseFloat(project.project_value))* 100) / 100}
+      //  value = {Math.round((parseFloat(project.project_value * 0.13) + parseFloat(project.project_value))* 100) / 100}
+
         onChange={handleChange}
         />
       </div>
@@ -323,7 +322,7 @@ const AddProject = (props) => {
      <button
       type="submit"
       variant="primary"
-      className="btn btn-info"
+      className="btn btn-success"
       title="Submit">
         Submit
       </button>
@@ -331,7 +330,7 @@ const AddProject = (props) => {
       <button
           type="cancel"
           variant="primary"
-          className="btn btn-danger"
+          className="btn btn-secondary"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
       </button>

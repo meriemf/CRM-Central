@@ -2,17 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 
-module.exports=({getDashboardData})=>{
+module.exports = ({ getDashboardData }) => {
 
   router.get('/', (req, res) => {
-    console.log("inside dashboard request");
+    console.log("inside the get request");
     getDashboardData()
-      .then((data) => console.log(res.json(data)))
+      .then((data) => (res.json(data)))
       .catch((err) => res.json({ error: err.message }));
   });
 
-  return router;
-
-}
 
 
+return router;
+};

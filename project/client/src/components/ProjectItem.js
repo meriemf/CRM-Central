@@ -18,28 +18,29 @@ const ProjectItem = ({
  }) => {
   return (
     <tr> 
-        <th scope="row">{id}</th>
-        <td>{name}</td>
-        <td>{moment(start_date).format('DD/MM/YYYY')}</td>
-        <td>{moment(end_date).format('DD/MM/YYYY')}</td>
-        <td>{assigned_to}</td>
-        <td>{type}</td>
-        <td>{project_stage}</td>
-        <td>{payment_received}</td>
-        <td>{moment(payment_date).format('DD/MM/YYYY')}</td>
-        <td> 
+      <td scope="row">{id}</td>
+      <td>{name}</td>
+      {/* <td>{number}</td> */}
+      <td>{moment(start_date).format('DD/MM/YYYY')}</td>
+      <td>{moment(end_date).format('DD/MM/YYYY')}</td>
+      <td>{assigned_to}</td>
+      <td>{type}</td>
+      <td>{project_stage}</td>
+      <td>{payment_received}</td>
+      <td>{moment(payment_date).format('DD/MM/YYYY')}</td>
+      <td> 
         <Link to= {`/projects/${id}/edit`}
-            className="btn btn-success mr-1"
+            className="btn btn-success"
             role="button"
             aria-pressed="true" 
             > Edit          
         </Link>
         <button
-            className="btn btn-success mr-1"
+            className="btn btn-secondary"
             type="button"
-            onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
+            onClick={()=>{if (window.confirm('Are you sure you wish to delete this project?')) onDelete(id)}}> Delete
         </button>
-    </td>
+      </td>
     </tr>
   );
 

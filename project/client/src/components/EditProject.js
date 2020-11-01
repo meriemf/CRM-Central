@@ -3,12 +3,22 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 const Wrapper = styled.div`
-  margin-top: 5em;
-  margin-left: 7em;
+  margin-top: 4em;
+  margin-left: 8em;
   margin-right: 20em;
   margin-bottom: 5em;
 `;
-
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+  return [year, month, day].join('-');
+}
 const EditProject = (props) => {
 
 const { id } = props.match.params;
@@ -84,7 +94,7 @@ const handleChange = (event) => {
    console.log(project);
     SaveProject();
  };
-
+console.log(project);
 const onCancel = () => {
 
   props.history.push('/projects');
@@ -131,7 +141,7 @@ return (
         className="form-control"
         name="start_date"
         placeholder="Start Date"
-        value={project.start_date}
+        value={formatDate(new Date(project.start_date))}
         onChange={handleChange}
         required />
       </div>
@@ -144,7 +154,7 @@ return (
         className="form-control"
         name="end_date"
         placeholder="End Date"
-        value={project.end_date}
+        value={formatDate(new Date(project.end_date))}
         onChange={handleChange}
         required />
       </div>
@@ -180,7 +190,7 @@ return (
         className="form-control"
         name="courses_number"
         //placeholder=""
-        value={project.courses_value}
+        value={project.courses_number}
         onChange={handleChange}
          />
       </div>
@@ -203,7 +213,7 @@ return (
         type="text"
         className="form-control"
         name="stage"
-        value={project.stage}
+        value={project.project_stage}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
@@ -241,7 +251,7 @@ return (
       <div className ="form-group">
         <label htmlFor="total_price">Total Price</label>
         <input 
-        type="text"
+        type="number"
         className="form-control"
         name="total_price"
         //placeholder="Contractor Name"
@@ -275,7 +285,7 @@ return (
         className="form-control"
         name="payment_date"
         placeholder="Payment Date"
-        value={project.payment_date}
+        value={formatDate(new Date(project.payment_date))}
         onChange={handleChange}
          />
       </div>
@@ -283,7 +293,21 @@ return (
       <div className ="form-group">
         <label htmlFor="first_name">Client Name</label>
         <div></div>
-        <select onChange={handleChange} name="client_id"
+        {/* <select onChange={handleChange} name="client_id"
+        type="text"
+        className="form-control">
+        <option value="Select">Select....</option>
+      {clients.map(client => (
+        <option
+          key={client.id}
+          value={client.id}
+        >
+          {client.first_name}
+        </option>
+      ))} */}
+
+
+<select onChange={handleChange} name="client_id"
         type="text"
         className="form-control">
         <option value="Select">Select....</option>
@@ -295,6 +319,7 @@ return (
           {client.first_name}
         </option>
       ))}
+
     </select>
       </div>
 
@@ -303,7 +328,7 @@ return (
       <button
       type="submit"
       variant="primary"
-      className="btn btn-primary"
+      className="btn btn-info"
       title="Submit">
         Submit
       </button>
@@ -311,7 +336,7 @@ return (
   <button
           type="cancel"
           variant="primary"
-          className="btn btn-primary"
+          className="btn btn-secondary"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
   </button>
