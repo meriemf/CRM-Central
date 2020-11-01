@@ -64,7 +64,7 @@ const ClientItem = ({id, first_name, last_name, email,department,client_type,wor
       
       <tr className="hide-table-padding">
         {/* <td></td> */}
-        <td colSpan="4">
+        <td colSpan="8">
           <div id={`collapseTwo${id}`} className="collapse in p-3">
             <table>
               <thead>
