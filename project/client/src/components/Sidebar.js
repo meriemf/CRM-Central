@@ -72,7 +72,7 @@ class SideNav extends React.Component {
           path: '/clients', /* path is used as id to check which NavItem is active basically */
           name: 'Client',
           css: 'fa fa-fw fa-user-circle',
-          key: 2 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
+          key: 2 /* Key is required, else console throws error.*/
         },
         {
           path: '/clients/new',
