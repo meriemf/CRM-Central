@@ -7,7 +7,6 @@ import ProjectList from './ProjectList';
 import AddProject from './AddProject';
 import EditProject from './EditProject';
 import Dashboard from './Dashboard';
-
 const Routes = () => {
 return (
   <Switch >

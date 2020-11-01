@@ -23,7 +23,8 @@ const StyledChart1 = styled.div`
 `;
 
 const Dashboard = () => {
-  
+ 
+
   const [data1, setData] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
@@ -47,7 +48,7 @@ const Dashboard = () => {
   }, []);
 
  const first = [
-    { name: 'Quality Reviews in Progress', value: Number(data1) }, { name: 'Quality Reviewd Completed', value: Number(data2) },
+    { name: 'Quality Reviews in Progress', value: Number(data1) }, { name: 'Quality Reviews Completed', value: Number(data2) },
   ];
   
   const COLORS = ['#FFA500', '#20B2AA', '#FFBB28', '#FF8042'];
@@ -77,7 +78,7 @@ const Dashboard = () => {
     { name: 'Revenue Completed', value: data7 },
   ];
 
-  return (
+    return (
     <Wrapper>
       <h2 className="display-7">Dashboard</h2>
       <div className="flex-container">
@@ -85,7 +86,7 @@ const Dashboard = () => {
           <StyledChart1 className='wrapper'>
             <h5> Quality Reviews </h5>
             <ResponsiveContainer width = "100%" height= {500}>
-              <PieChart>
+              <PieChart >
                 <Pie
                 data={first}
                 cx={150}
@@ -101,6 +102,7 @@ const Dashboard = () => {
                 }
                 </Pie>
                 {/* <Tooltip/> */}
+                <Tooltip cursor={{fill: 'transparent'}}/>
                 <Legend iconSize={15} width={300} height={160} layout='horizontal' horizontalAlign='center' verticalAlign='bottom'/>
               </PieChart>
             </ResponsiveContainer>
@@ -125,7 +127,7 @@ const Dashboard = () => {
                 <Tooltip cursor={{fill: 'transparent'}}/>
                 <Legend iconSize={15} />
                 <Bar dataKey="Current" fill="#d95638" barSize={80} />
-                <Bar dataKey="Completed" fill="#5694f0" barSize={80} />
+                <Bar dataKey="Completed" fill="#5694f0" barSize={80}/>
                 <Bar dataKey="Upcoming" fill="#7eb356" barSize={80} />
               </BarChart>
             </ResponsiveContainer>
@@ -148,7 +150,7 @@ const Dashboard = () => {
                 label={renderCustomizedLabel}
                 labelLine={false}
                 dataKey="value"
-                isAnimationActive={false}
+                isAnimationActive={true}
               >
                 {
                   third.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)

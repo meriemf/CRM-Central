@@ -10,6 +10,7 @@ body{
   background-size: 'cover';
   background-repeat: 'no-repeat';
   opacity: 10;
+  font-family: Tahoma;
 }
 /* #root {
   z-index: 2;

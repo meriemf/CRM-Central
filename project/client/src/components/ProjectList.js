@@ -37,7 +37,6 @@ const ProjectList = () => {
         alert("Not able to delete project");
       }
       else {
-        alert("Project deleted");
         getProjects();
       }
     })

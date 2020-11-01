@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import ClientProjectItem from './ClientProjectItem'; 
 import axios from 'axios';
 
+
+
 const ClientItem = ({id, first_name, last_name, email,department,client_type,work_type, region,position_title, tweeter_username,initial_contact_made, onDelete}) => {
   const [projects, setProjects] = useState([]);
   useEffect(() => {
@@ -73,6 +75,7 @@ const ClientItem = ({id, first_name, last_name, email,department,client_type,wor
                 <th scope="col" style={{columnWidth: "200px"}}>Type</th>
                 {/* <th scope="col">Client</th> */}
                 <th scope="col" style={{columnWidth: "200px"}}>Start Date</th>
+                <th scope="col" style={{columnWidth: "200px"}}>End Date</th>
               </tr>
               </thead>
               <tbody style={{backgroundColor: "#ecede3"}}>
@@ -84,72 +87,6 @@ const ClientItem = ({id, first_name, last_name, email,department,client_type,wor
       </tr>
     </>
   );
-
-
-// <>
-// <tr className="accordion-toggle collapsed" id={`accordion${id}`} data-toggle="collapse" data-parent={`#accordion${id}`} href={`#collapseTwo${id}`}>
-//   {/* <td className="expand-button"></td> */}
-//     <th scope="row">{id}</th>
-//     <td>{first_name}</td>
-//     <td>{last_name}</td>
-//     <td>{email}</td>
-//     <td>{department}</td>
-//     <td>{client_type}</td>
-//     <td>{work_type}</td>
-//     <td>{region}</td>
-//     <td>{position_title}</td>
-//     <td>{tweeter_username}</td>
-//     <td>{initial_contact_made}</td>
-//     <td> 
-//          <Link to= {`/clients/${id}/edit`}
-//          className="btn btn-info mr-1"
-//          role="button"
-//          aria-pressed="true" 
-//         > Edit
-//         </Link>
-//         <button
-//         className="btn btn-danger mr-1"
-//         type="button"
-//         onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
-//         </button>
-//     </td>
-// </tr>
-// <tr className="hide-table-padding">
-// <td></td>
-// <td colSpan="4">
-
-
-
-// //  <tr classNameNameName="toggle" onClick ={()=> setIsOpen(!isOpen)}> 
-// //     <th scope="row">{id}</th>
-// //     <td>{first_name}</td>
-// //     <td>{last_name}</td>
-// //     <td>{email}</td>
-// //     <td>{department}</td>
-// //     <td>{client_type}</td>
-// //     <td>{work_type}</td>
-// //     <td>{region}</td>
-// //     <td>{position_title}</td>
-// //     <td>{tweeter_username}</td>
-// //     <td>{initial_contact_made}</td>
-    
-// //      <td> 
-// //          <Link to= {`/clients/${id}/edit`}
-        
-// //          classNameName="btn btn-success mr-1"
-// //          role="button"
-// //          aria-pressed="true" 
-// //         > Edit
-// //         </Link>
-// //         <button
-// //         classNameName="btn btn-success mr-1"
-// //         type="button"
-// //         onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
-// //         </button>
-// //     </td>
-// //         {isOpen && <div><ul> {clientProjects} </ul></div>}
-// //   </tr>
-
  }
 export default ClientItem;
 
