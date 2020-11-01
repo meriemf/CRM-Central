@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ClientItem from './ClientItem';
-import './ClientList.css';
+import '../css/ClientList.css';
 import styled from 'styled-components';
 const Wrapper = styled.div`
   margin-top: 4em;

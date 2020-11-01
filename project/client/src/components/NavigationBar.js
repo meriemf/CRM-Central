@@ -23,7 +23,7 @@ function NavigationBar () {
   return (
   <Styles>
     <Navbar>
-      <Navbar.Brand href="https://www.elmacademicconsultants.com/">eLM Academic Consultant</Navbar.Brand>
+      <Navbar.Brand href="https://www.elmacademicconsultants.com/">eLM Academic Consultants</Navbar.Brand>
       <Form className="form-right">
         <FormControl type="text" placeholder="Search" className="" />
       </Form>

@@ -1,0 +1,14 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-top: 4em;
+}
+.flex-container > div {
+  width: 300px;
+  margin-right: 20px;
+  margin-left: 50px;
+}
+h5 {
+  font-size: 1.75em;
+}

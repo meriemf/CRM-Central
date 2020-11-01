@@ -313,7 +313,7 @@ return (
       <button
       type="submit"
       variant="primary"
-      className="btn btn-info"
+      className="btn btn-success"
       title="Submit">
         Submit
       </button>

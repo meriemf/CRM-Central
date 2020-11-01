@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import ClientProjectItem from './ClientProjectItem'; 
 import axios from 'axios';
-import './ClientItem.css'
 
 const ClientItem = ({id, first_name, last_name, email,department,client_type,work_type, region,position_title, tweeter_username,initial_contact_made, onDelete}) => {
   const [projects, setProjects] = useState([]);
@@ -43,15 +42,22 @@ const ClientItem = ({id, first_name, last_name, email,department,client_type,wor
         <td style={{columnWidth: "100px"}}>{initial_contact_made}</td>
         <td style={{columnWidth: "200px"}}> 
           <Link to= {`/clients/${id}/edit`}
-          className="btn btn-warning"
+          className="btn btn-outline-success btn-sm rounded-0"
           role="button"
           aria-pressed="true" 
-          > Edit
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Edit"
+          ><i class="fa fa-edit"></i>
           </Link>
+          &nbsp;
           <button
-          className="btn btn-secondary"
+          className="btn btn-outline-danger btn-sm rounded-0"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Delete"
           type="button"
-          onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}> Delete
+          onClick={()=>{if (window.confirm('Are you sure you wish to delete this client?')) onDelete(id)}}><i class="fa fa-trash"></i>
           </button>
         </td>
       </tr>

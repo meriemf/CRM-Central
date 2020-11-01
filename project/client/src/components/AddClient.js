@@ -217,11 +217,10 @@ const AddClient = (props) => {
     </div>
 
   <button
-          
         type="submit"
         variant="primary"
         className="btn btn-success"
-        title="Submit">Submit
+        data-placement="top">Submit
   </button>
   &nbsp; &nbsp; &nbsp; 
   <button
