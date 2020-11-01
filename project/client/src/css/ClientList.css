@@ -1,20 +1,9 @@
 .table-striped>tbody>tr:nth-child(odd)>td {
   background-color:  #ecede3;
 }
-table {
-  position: relative;
-}
-
 th {
   background-color: #c6c9ad;
-  position: sticky;
-  top: 0;
 }
-
 tr:nth-child(odd) {
   background-color:lightyellow;
 }
-/* 
-tr:nth-child(even) {
-  background-color: lightskyblue;
-} */

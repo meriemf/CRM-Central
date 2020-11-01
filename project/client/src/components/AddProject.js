@@ -25,7 +25,7 @@ const AddProject = (props) => {
     payment_received:'',
     payment_date:'',
     // client_id:''
-    courses_number:'',
+    courses_number:0,
     project_value:0,
   
   });
@@ -55,9 +55,12 @@ const AddProject = (props) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    //Submit Project
-    submitProject();
-    fileUploadHandler();
+    if (project.end_date < project.start_date) {
+      alert("End date must be greater than start date");
+    } else {
+      submitProject();
+      fileUploadHandler();
+    }
   }
 
   const submitProject=()=>{ 
@@ -84,7 +87,7 @@ const AddProject = (props) => {
   const fileUploadHandler = () => {
    const fd = new FormData();
    fd.append ('invoice', state.selectedFile) 
-   axios.post ('/home/meriem/', fd)
+   axios.post ('localhost:3002/', fd)
         .then ((res) => {
           console.log(res);
         });
@@ -226,7 +229,7 @@ const AddProject = (props) => {
 
       {/* project value */}
       <div className ="form-group">
-        <label htmlFor="project_value">Project Value</label>
+        <label htmlFor="project_value">Project Value (CAD$) </label>
         <input 
         type="text"
         className="form-control"
@@ -238,7 +241,7 @@ const AddProject = (props) => {
       </div>
 
       <div className ="form-group">
-        <label htmlFor="hst">HST</label>
+        <label htmlFor="hst">HST (CAD$)</label>
         <input readOnly
         type="text"
         className="form-control"
@@ -248,7 +251,7 @@ const AddProject = (props) => {
         />
       </div>
       <div className ="form-group">
-        <label htmlFor="total_price">Total Price</label>
+        <label htmlFor="total_price">Total Price (CAD$)</label>
         <input readOnly
         type="text"
         className="form-control"

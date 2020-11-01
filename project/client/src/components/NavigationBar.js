@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState, useD} from 'react';
 import { Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
+
 const Styles = styled.div`
   .navbar { 
     background-color: #362F07;
@@ -20,12 +21,13 @@ const Styles = styled.div`
   }
 `;
 function NavigationBar () {
+  const [term, setTerm] = useState("");
   return (
   <Styles>
     <Navbar>
-      <Navbar.Brand href="https://www.elmacademicconsultants.com/">eLM Academic Consultant</Navbar.Brand>
+      <Navbar.Brand href="https://www.elmacademicconsultants.com/">eLM Academic Consultants</Navbar.Brand>
       <Form className="form-right">
-        <FormControl type="text" placeholder="Search" className="" />
+          <FormControl type="text" placeholder="Search" className="" /> 
       </Form>
     </Navbar>
   </Styles>

@@ -34,8 +34,8 @@ const [project, setProject] = useState ({
   payment_received:'',
   payment_date:'',
   client_id:'',
-  courses_number:'',
-  project_value:'',
+  courses_number:0,
+  project_value:0,
 });
 const [clients, setClients] = useState([]    
   );
@@ -68,11 +68,8 @@ useEffect (() => {
  };
     getProject();
 }, [id]);
-
-
-
 const handleChange = (event) => {
-  console.log("handle change function");
+ // console.log("handle change function");
   setProject ({
   ...project, // save the previous state
   [event.target.name] : event.target.value 
@@ -85,15 +82,18 @@ const handleChange = (event) => {
     console.log("save project",res);
      console.log("props",props);
      props.history.push('/projects');
- } 
-  
+   }   
   );
   };
  const handleSubmit = (event)=> {
    event.preventDefault();
-   console.log(project);
+   if (project.end_date < project.start_date) {
+    alert("End date must be greater than start date");
+  } else {
     SaveProject();
+  }
  };
+ 
 console.log(project);
 const onCancel = () => {
 
@@ -130,9 +130,6 @@ return (
         onChange={handleChange}
         required />
       </div>
-
-     
-
       {/* start_date */}
       <div className ="form-group">
         <label htmlFor="start_date">Start Date</label>
@@ -212,12 +209,12 @@ return (
         <select 
         type="text"
         className="form-control"
-        name="stage"
+        name="project_stage"
         value={project.project_stage}
         onChange={handleChange}
         required >
           <option value="Select">Select....</option>
-          <option value="Consulattion">Consultation</option>
+          <option value="Consulation">Consultation</option>
           <option value="Contract Sent">Contract Sent</option>
           <option value="Contract Signed">Contract Signed</option>
           <option value="Work In Progress">Work In Progress</option>
@@ -226,7 +223,7 @@ return (
       </div>
        {/* project value */}
        <div className ="form-group">
-        <label htmlFor="project_value">Project Value</label>
+        <label htmlFor="project_value">Project Value (CAD$)</label>
         <input 
         type="text"
         className="form-control"
@@ -237,7 +234,7 @@ return (
         />
       </div>
       <div className ="form-group">
-        <label htmlFor="hst">HST</label>
+        <label htmlFor="hst">HST (CAD$)</label>
         <input 
         type="text"
         className="form-control"
@@ -249,7 +246,7 @@ return (
         />
       </div>
       <div className ="form-group">
-        <label htmlFor="total_price">Total Price</label>
+        <label htmlFor="total_price">Total Price (CAD$)</label>
         <input 
         type="number"
         className="form-control"
@@ -309,7 +306,9 @@ return (
 
 <select onChange={handleChange} name="client_id"
         type="text"
-        className="form-control">
+        className="form-control"
+        value = {project.client_id}
+         >
         <option value="Select">Select....</option>
       {clients.map(client => (
         <option
@@ -321,25 +320,22 @@ return (
       ))}
 
     </select>
-      </div>
-
-
-      
+      </div>      
       <button
       type="submit"
       variant="primary"
-      className="btn btn-info"
+      className="btn btn-success"
       title="Submit">
         Submit
       </button>
       &nbsp; &nbsp; &nbsp; 
-  <button
+      <button
           type="cancel"
           variant="primary"
           className="btn btn-secondary"
           title="Cancel"
           onClick={()=>{ onCancel()}}> Cancel 
-  </button>
+      </button>
   </form>
   </Wrapper>
 );

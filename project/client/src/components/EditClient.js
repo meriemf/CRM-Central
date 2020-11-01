@@ -170,8 +170,7 @@ return (
       required >
     <option value="Select" >Select....</option>
     <option value="Potential Client">Potential Client</option>
-    <option value="Current Client">Current Client</option>
-    
+    <option value="Current Client">Current Client</option>    
     </select>
     </div>
 
@@ -239,7 +238,7 @@ return (
     <option value="No">No</option></select>
     </div>
     <div className ="form-group">
-      <label htmlFor="note">Notes</label>
+      <label htmlFor="note">Add Notes</label>
       <textarea 
       type="text"
       className="form-control"
