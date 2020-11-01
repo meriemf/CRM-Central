@@ -9,6 +9,7 @@ const ClientProjectItem = ({id, name, number, start_date, end_date, assigned_to,
       {/* <td className="col-6">{id}</td> */}
       {/* <th className="col-8">{moment(start_date).format('DD/MM/YYYY')}</th> */}
       <td>{moment(start_date).format('DD/MM/YYYY')}</td>
+      <td>{moment(end_date).format('DD/MM/YYYY')}</td>
     </tr>
   );
 }

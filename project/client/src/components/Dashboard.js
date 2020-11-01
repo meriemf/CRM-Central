@@ -89,7 +89,7 @@ return (
   <Wrapper>
   <div className ='App'>   
   {/* <h2>Dashboard</h2> */}
-  <StyledChart1>
+ 
   <h5> Quality reviews </h5>
   <PieChart width={400} height={400}>
           <Pie
@@ -112,7 +112,7 @@ return (
         {/* <Tooltip/> */}
         <Legend/>
   </PieChart>
-  </StyledChart1>
+ 
   {/* <StyledChart1> */}
   <h5> Projects </h5>
   <ResponsiveContainer width = "40%" height= {400}>
@@ -136,7 +136,7 @@ return (
   </ResponsiveContainer>
   {/* </StyledChart1> */}
 
-<StyledChart1> 
+
 
 <PieChart width={800} height={400} >
         <Pie
@@ -157,9 +157,6 @@ return (
         <Tooltip />
         <Legend />
         </PieChart>
-</StyledChart1>
-
-
 </div>
 </Wrapper>
 )

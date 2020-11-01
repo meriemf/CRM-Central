@@ -91,7 +91,7 @@ class SideNav extends React.Component {
           name: 'Add Project',
           css: 'fa fa-fw fa-plus-square',
           key: 5
-        }
+        },
       ]
     }  
   }
