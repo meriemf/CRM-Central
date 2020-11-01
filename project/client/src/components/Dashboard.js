@@ -81,8 +81,8 @@ const Dashboard = () => {
     <Wrapper>
       <h2 className="display-7">Dashboard</h2>
       <div className="flex-container">
-        <div className='hover' style={{flexGrow: 1}}>
-          <StyledChart1>
+        <div style={{flexGrow: 1}}>
+          <StyledChart1 className='wrapper'>
             <h5> Quality Reviews </h5>
             <ResponsiveContainer width = "100%" height= {500}>
               <PieChart>
@@ -108,7 +108,7 @@ const Dashboard = () => {
         </div>
 
         <div style={{flexGrow: 8}}>
-          <StyledChart1>
+          <StyledChart1 className='wrapper'>
             <h5> Projects </h5>
             <ResponsiveContainer width = "100%" height= {500}>
               <BarChart
@@ -133,7 +133,7 @@ const Dashboard = () => {
         </div>
 
         <div style={{flexGrow: 1}}>
-          <StyledChart1>
+          <StyledChart1 className='wrapper'>
           <h5> Revenue </h5>
           <ResponsiveContainer width = "100%" height= {500}>
             <PieChart width={400} height={400} >
