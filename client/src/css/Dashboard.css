@@ -1,0 +1,24 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-top: 4em;
+}
+.flex-container > div {
+  width: 300px;
+  margin-right: 20px;
+  margin-left: 50px;
+}
+h5 {
+  font-size: 1.75em;
+}
+
+.wrapper {
+  transition:  box-shadow .2s ease-in;
+  display:block;
+}
+
+.wrapper:hover{ 
+  box-shadow: 40px 8px 40px grey;
+  transition:  box-shadow .2s ease-in;
+}

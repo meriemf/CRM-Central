@@ -1,0 +1,9 @@
+.table-striped>tbody>tr:nth-child(odd)>td {
+  background-color:  #ecede3;
+}
+th {
+  background-color: #c6c9ad;
+}
+tr:nth-child(odd) {
+  background-color:lightyellow;
+}
