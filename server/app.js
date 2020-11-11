@@ -9,8 +9,6 @@ const clientsRouter = require('./routes/clients');
 const projectsRouter = require('./routes/projects');
 const dashboardRouter = require ('./routes/dashboard');
 
-
-
 // const dashboardRouter = require('./routes/dashboard');
 
 const dbHelpers = require('./helpers/dbHelpers')(db);
