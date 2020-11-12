@@ -9,7 +9,7 @@
   publish = "build/"
 
   # Default build command.
-
+  command = "npm run build"
 [build.environment]
   REACT_APP_API_BASE_URL = "https://crm-central.herokuapp.com/"
   REACT_APP_WEBSOCKET_URL = "wss://crm-central.herokuapp.com/"
